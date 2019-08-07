@@ -68,7 +68,7 @@ class PenggunaUmumController extends Controller
     {
         $data = PenggunaUmum::find($id);
         return view('pengguna_umum.detail_pengguna')
-        ->with('data', $data
+        ->with('data', $data);
     }
 
     /**
@@ -81,7 +81,7 @@ class PenggunaUmumController extends Controller
     {
         $data = PenggunaUmum::find($id);
         return view('pengguna_umum.form_ubah')
-        ->with('data', $data)
+        ->with('data', $data);
     }
 
     /**
