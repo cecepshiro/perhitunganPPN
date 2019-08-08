@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <h4 class="title">Kelola Data Pengajuan</h4>
+            <h4 class="title">Kelola Data Pengguna Umum</h4>
             <p class="category">A powerful jQuery plugin handcrafted by our friends from <a
                     href="https://datatables.net/" target="_blank">dataTables.net</a>. It is a highly flexible tool,
                 based upon the foundations of progressive enhancement and will add advanced interaction controls to any
@@ -23,20 +23,22 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Pengaju</th>
-                                    <th>Email</th>
-                                    <th>Nama Usaha</th>
-                                    <th>Status</th>
+                                    <th>Nama Pengguna</th>
+                                    <th>Tempat Lahir</th>
+                                    <th>Tgl. Lahir</th>
+                                    <th>JK</th>
+                                    <th>No. Telp</th>
                                     <th class="disabled-sorting">Actions</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Pengaju</th>
-                                    <th>Email</th>
-                                    <th>Nama Usaha</th>
-                                    <th>Status</th>
+                                    <th>Nama Pengguna</th>
+                                    <th>Tempat Lahir</th>
+                                    <th>Tgl. Lahir</th>
+                                    <th>JK</th>
+                                    <th>No. Telp</th>
                                     <th class="disabled-sorting">Actions</th>
                                 </tr>
                             </tfoot>
@@ -46,13 +48,14 @@
                             <? $no++ ?>
                                 <tr>
                                     <td>{{ $no }}</td>
-                                    <td>{{ $row->nama_pengaju }}</td>
-                                    <td>{{ $row->email }}</td>
-                                    <td>{{ $row->nama_usaha }}</td>
-                                    <td>{{ $row->status }}</td>
+                                    <td>{{ $row->nama_pengguna }}</td>
+                                    <td>{{ $row->tempat_lahir }}</td>
+                                    <td>{{ $row->tanggal_lahir }}</td>
+                                    <td>{{ $row->jenis_kelamin }}</td>
+                                    <td>{{ $row->no_telp }}</td>
                                     <td>
-                                        <a href="{{ url('pengaju/detail/'.$row->id_pengaju) }}" class="btn btn-primary btn-sm "></i>Detail</a>
-                                        <a href="{{ url('pengaju/hapus/'.$row->id_pengaju) }}" class="btn btn-danger btn-sm "></i>Hapus</a>
+                                        <a href="{{ url('pumum/detail/'.$row->id_pengguna) }}" class="btn btn-primary btn-sm "></i>Detail</a>
+                                        <a href="{{ url('pumum/hapus/'.$row->id_pengguna) }}" class="btn btn-danger btn-sm "></i>Hapus</a>
                                     </td>
                                 </tr>
                             @endforeach

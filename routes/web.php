@@ -57,15 +57,19 @@ Route::get('pengaju/detail/{id}', 'PengajuController@show');
 Route::get('pengaju/edit/{id}', 'PengajuController@edit');
 Route::post('pengaju/update/{id}', 'PengajuController@update');
 Route::get('pengaju/hapus/{id}', 'PengajuController@destroy');
+Route::get('pengaju/createAccount/{id}', 'PengajuController@createAccount');
+Route::post('pengaju/storeAccount/', 'PengajuController@storeAccount');
+Route::get('pengaju/downloadIzinUsaha/{id}', 'PengajuController@downloadIzinUsaha');
 
 //Pengguna Umum Controller
 Route::get('pumum/index/', 'PenggunaUmumController@index');
-Route::get('pumum/create/', 'PenggunaUmumController@create');
+Route::get('pumum/create/{id}', 'PenggunaUmumController@create');
 Route::post('pumum/simpan/', 'PenggunaUmumController@store');
 Route::get('pumum/detail/{id}', 'PenggunaUmumController@show');
 Route::get('pumum/edit/{id}', 'PenggunaUmumController@edit');
 Route::post('pumum/update/{id}', 'PenggunaUmumController@update');
 Route::get('pumum/hapus/{id}', 'PenggunaUmumController@destroy');
+Route::get('pumum/listProfil/{id}', 'PenggunaUmumController@listProfil');
 
 //Petugas
 Route::get('petugas/index/', 'PetugasController@index');

@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pengaju;
+use App\User;
+use App\PenggunaUmum;
 use App\Mail\NotifikasiPengajuanMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 
 class PengajuController extends Controller
 {
@@ -78,7 +81,7 @@ class PengajuController extends Controller
     public function show($id)
     {
         $data = Pengaju::find($id);
-        return view('dokumen.detail_dokumen')
+        return view('pengajuan.detail')
         ->with('data', $data);
     }
 
@@ -108,7 +111,7 @@ class PengajuController extends Controller
         $email=$request->input('email');
         $path_dokumen=$request->input('path_dokumen');
         $status=$request->input('status');
-        $data = Pengaju::where('id_dokumen',$id)->first();
+        $data = Pengaju::where('id_pengaju',$id)->first();
         $data->nama_pengaju = $nama_pengaju;
         $data->email = $email;
         $data->path_dokumen = $path_dokumen;
@@ -132,5 +135,44 @@ class PengajuController extends Controller
     public function mail(){
         Mail::to("tes@admin.com")->send(new NotifikasiPengajuanMail());
 		return "Email telah dikirim";
+    }
+
+    //Buat Akun Pengaju Jika di ACC
+    public function createAccount($id)
+    {
+        $status="accept";
+        $data = Pengaju::where('id_pengaju',$id)->first();
+        $data->status = $status;
+        if($data->save()){
+            $data = Pengaju::find($id);
+            return view('pengajuan.createAccount')
+            ->with('data', $data);
+        }
+    }
+
+    //Simpan Akun Pengaju Jika di ACC
+    public function storeAccount(Request $request)
+    {
+        $email=$request->input('email');
+        // $password=$random = str_random(6);
+        $password=$request->input('password');
+        $level="4";
+        $data=new User();
+        $data->email = $email;
+        $data->password = Hash::make($password);
+        $data->level = $level;
+        if($data->save()){
+            return redirect('pengaju/index')
+            ->with(['success' => 'Berhasil mendaftarkan akun pengaju']);
+        }else{
+            return redirect('pengaju/index')
+            ->with(['error' => 'Gagal mendaftarkan akun pengaju']);
+        }
+    }
+
+    public function downloadIzinUsaha($id){
+        $data=Pengaju::find($id);
+        $pathToFile='/berkas_izin_usaha'.'/'.$data->path_dokumen;
+        return response()->download(public_path($pathToFile));
     }
 }

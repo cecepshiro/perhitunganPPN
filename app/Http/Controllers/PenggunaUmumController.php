@@ -15,7 +15,7 @@ class PenggunaUmumController extends Controller
     public function index()
     {
         $data=PenggunaUmum::get();
-        return view('pengguna_umum.home')
+        return view('pengguna_umum.list')
         ->with('data', $data);
     }
 
@@ -24,9 +24,12 @@ class PenggunaUmumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($email)
     {
-        return view('pengguna_umum.form_tambah');
+        $data = PenggunaUmum::getDataPengaju($email);
+        return view('pengguna_umum.form_tambah')
+        ->with('data', $data);
+        // print_r($data);
     }
 
     /**
@@ -37,6 +40,15 @@ class PenggunaUmumController extends Controller
      */
     public function store(Request $request)
     {
+        if($file=$request->file('file')){
+            if($file->getClientOriginalExtension()=="jpg" || $file->getClientOriginalExtension()=="jpeg" || $file->getClientOriginalExtension()=="png"){
+                $name=("pp".time()).".".$file->getClientOriginalExtension();
+                $file->move('foto_profil',$name);
+                $berkas=$name;
+            }else{
+                return "Format tidak didukung";
+            }
+        }
         $user_id=$request->input('user_id');
         $nama_pengguna=$request->input('nama_pengguna');
         $tempat_lahir=$request->input('tempat_lahir');
@@ -44,7 +56,7 @@ class PenggunaUmumController extends Controller
         $jenis_kelamin=$request->input('jenis_kelamin');
         $no_telp=$request->input('no_telp');
         $alamat=$request->input('alamat');
-        $foto=$request->input('foto');
+        $email=$request->input('email');
         $data=new PenggunaUmum();
         $data->user_id = $user_id;
         $data->nama_pengguna = $nama_pengguna;
@@ -53,9 +65,10 @@ class PenggunaUmumController extends Controller
         $data->jenis_kelamin = $jenis_kelamin;
         $data->no_telp = $no_telp;
         $data->alamat = $alamat;
-        $data->foto = $foto;
+        $data->email = $email;
+        $data->foto = $berkas;
         $data->save();
-        return redirect('pumum/index');
+        return redirect('pumum/listProfil/'.$user_id);
     }
 
     /**
@@ -99,6 +112,7 @@ class PenggunaUmumController extends Controller
         $jenis_kelamin=$request->input('jenis_kelamin');
         $no_telp=$request->input('no_telp');
         $alamat=$request->input('alamat');
+        $email=$request->input('email');
         $foto=$request->input('foto');
         $data = PenggunaUmum::where('id_pengguna',$id)->first();
         $data->nama_pengguna = $nama_pengguna;
@@ -107,6 +121,7 @@ class PenggunaUmumController extends Controller
         $data->jenis_kelamin = $jenis_kelamin;
         $data->no_telp = $no_telp;
         $data->alamat = $alamat;
+        $data->email = $email;
         $data->foto = $foto;
         $data->save();
         return redirect('pumum/index');
@@ -122,5 +137,15 @@ class PenggunaUmumController extends Controller
     {
         PenggunaUmum::find($id)->delete();
         return redirect('pumum/index');
+    }
+
+    //Memunculkan data profil pengguna
+    public function listProfil($id)
+    {
+        $data =  PenggunaUmum::where('user_id',$id)->first();
+        $data2 =  PenggunaUmum::getDataPengajuByID($id);
+        return view('pengguna_umum/list_profile')
+        ->With('data', $data)
+        ->With('data2', $data2);
     }
 }
