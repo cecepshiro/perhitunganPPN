@@ -39,64 +39,67 @@
 </body>
 
 	<!--   Core JS Files. Extra: TouchPunch for touch library inside jquery-ui.min.js   -->
-	<script src="{{ asset('assets_login/js/jquery.min.js') }}" type="text/javascript"></script>
-	<script src="{{ asset('assets_login/js/jquery-ui.min.js') }}" type="text/javascript"></script>
-	<script src="{{ asset('assets_login/js/perfect-scrollbar.min.js') }}" type="text/javascript"></script>
-	<script src="{{ asset('assets_login/js/bootstrap.min.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('assets_login2/js/jquery.min.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('assets_login2/js/jquery-ui.min.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('assets_login2/js/perfect-scrollbar.min.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('assets_login2/js/bootstrap.min.js') }}" type="text/javascript"></script>
 
 	<!--  Forms Validations Plugin -->
-	<script src="{{ asset('assets_login/js/jquery.validate.min.js') }}"></script>
+	<script src="{{ asset('assets_login2/js/jquery.validate.min.js') }}"></script>
 
 	<!-- Promise Library for SweetAlert2 working on IE -->
-	<script src="{{ asset('assets_login/js/es6-promise-auto.min.js') }}"></script>
+	<script src="{{ asset('assets_login2/js/es6-promise-auto.min.js') }}"></script>
 
 	<!--  Plugin for Date Time Picker and Full Calendar Plugin-->
-	<script src="{{ asset('assets_login/js/moment.min.js') }}"></script>
+	<script src="{{ asset('assets_login2/js/moment.min.js') }}"></script>
 
 	<!--  Date Time Picker Plugin is included in this js file -->
-	<script src="{{ asset('assets_login/js/bootstrap-datetimepicker.js') }}"></script>
+	<script src="{{ asset('assets_login2/js/bootstrap-datetimepicker.js') }}"></script>
 
 	<!--  Select Picker Plugin -->
-	<script src="{{ asset('assets_login/js/bootstrap-selectpicker.js') }}"></script>
+	<script src="{{ asset('assets_login2/js/bootstrap-selectpicker.js') }}"></script>
 
 	<!--  Switch and Tags Input Plugins -->
-	<script src="{{ asset('assets_login/js/bootstrap-switch-tags.js') }}"></script>
+	<script src="{{ asset('assets_login2/js/bootstrap-switch-tags.js') }}"></script>
 
 	<!-- Circle Percentage-chart -->
-	<script src="{{ asset('assets_login/js/jquery.easypiechart.min.js') }}"></script>
+	<script src="{{ asset('assets_login2/js/jquery.easypiechart.min.js') }}"></script>
 
 	<!--  Charts Plugin -->
-	<script src="{{ asset('assets_login/js/chartist.min.js') }}"></script>
+	<script src="{{ asset('assets_login2/js/chartist.min.js') }}"></script>
 
 	<!--  Notifications Plugin    -->
-	<script src="{{ asset('assets_login/js/bootstrap-notify.js') }}"></script>
+	<script src="{{ asset('assets_login2/js/bootstrap-notify.js') }}"></script>
 
 	<!-- Sweet Alert 2 plugin -->
-	<script src="{{ asset('assets_login/js/sweetalert2.js') }}"></script>
+	<script src="{{ asset('assets_login2/js/sweetalert2.js') }}"></script>
 
 	<!-- Vector Map plugin -->
-	<script src="{{ asset('assets_login/js/jquery-jvectormap.js') }}"></script>
+	<script src="{{ asset('assets_login2/js/jquery-jvectormap.js') }}"></script>
 
 	<!--  Google Maps Plugin    -->
 	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFPQibxeDaLIUHsC6_KqDdFaUdhrbhZ3M"></script> -->
 
 	<!-- Wizard Plugin    -->
-	<script src="{{ asset('assets_login/js/jquery.bootstrap.wizard.min.js') }}"></script>
+	<script src="{{ asset('assets_login2/js/jquery.bootstrap.wizard.min.js') }}"></script>
 
 	<!--  Bootstrap Table Plugin    -->
-	<script src="{{ asset('assets_login/js/bootstrap-table.js') }}"></script>
+	<script src="{{ asset('assets_login2/js/bootstrap-table.js') }}"></script>
 
 	<!--  Plugin for DataTables.net  -->
-	<script src="{{ asset('assets_login/js/jquery.datatables.js') }}"></script>
+	<script src="{{ asset('assets_login2/js/jquery.datatables.js') }}"></script>
 
 	<!--  Full Calendar Plugin    -->
-	<script src="{{ asset('assets_login/js/fullcalendar.min.j') }}s"></script>
+	<script src="{{ asset('assets_login2/js/fullcalendar.min.js') }}"></script>
 
 	<!-- Paper Dashboard PRO Core javascript and methods for Demo purpose -->
-	<script src="{{ asset('assets_login/js/paper-dashboard.js') }}"></script>
+	<script src="{{ asset('assets_login2/js/paper-dashboard.js') }}"></script>
 
 	<!--   Sharrre Library    -->
-    <script src="{{ asset('assets_login/js/jquery.sharrre.js') }}"></script>
+	<script src="{{ asset('assets_login2/js/jquery.sharrre.js') }}"></script>
+
+	<!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
+	<script src="{{ asset('assets_login2/js/demo.js') }}"></script>
 
 	<!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 	<!-- <script src="{{ asset('assets_login/js/demo.js"></script> -->
@@ -110,6 +113,11 @@
                 $('.card').removeClass('card-hidden');
             }, 700)
         });
+	</script>
+	<script type="text/javascript">
+        $(document).ready(function(){
+			demo.initWizard();
+		});
 	</script>
 
 </html>

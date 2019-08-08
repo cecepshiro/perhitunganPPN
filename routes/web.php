@@ -49,16 +49,16 @@ Route::group(['middleware' => ['web','auth']], function(){
 });
 
 
-//Dokumen
-Route::get('dokumen/index/', 'DokumenController@index');
-Route::get('dokumen/create/', 'DokumenController@create');
-Route::post('dokumen/simpan/', 'DokumenController@store');
-Route::get('dokumen/detail/{id}', 'DokumenController@show');
-Route::get('dokumen/edit/{id}', 'DokumenController@edit');
-Route::post('dokumen/update/{id}', 'DokumenController@update');
-Route::get('dokumen/hapus/{id}', 'DokumenController@destroy');
+//Pengaju Controller
+Route::get('pengaju/index/', 'PengajuController@index');
+Route::get('pengaju/create/', 'PengajuController@create');
+Route::post('pengaju/simpan/', 'PengajuController@store');
+Route::get('pengaju/detail/{id}', 'PengajuController@show');
+Route::get('pengaju/edit/{id}', 'PengajuController@edit');
+Route::post('pengaju/update/{id}', 'PengajuController@update');
+Route::get('pengaju/hapus/{id}', 'PengajuController@destroy');
 
-//Pengguna Umum
+//Pengguna Umum Controller
 Route::get('pumum/index/', 'PenggunaUmumController@index');
 Route::get('pumum/create/', 'PenggunaUmumController@create');
 Route::post('pumum/simpan/', 'PenggunaUmumController@store');
@@ -75,3 +75,8 @@ Route::get('petugas/detail/{id}', 'PetugasController@show');
 Route::get('petugas/edit/{id}', 'PetugasController@edit');
 Route::post('petugas/update/{id}', 'PetugasController@update');
 Route::get('petugas/hapus/{id}', 'PetugasController@destroy');
+
+
+//Push Email
+
+Route::get('pengajuan/sendemail','PengajuController@mail');
