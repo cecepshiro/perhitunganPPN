@@ -24,6 +24,15 @@ class PenggunaUmum extends Model
        ->first();
     }
 
+    //mencari data pengguna by email
+    public static function getDataPengguna($email){
+      return $data = DB::table('users')
+       ->join('data_pengguna', 'users.email','=','data_pengguna.email')
+       ->select('data_pengguna.*')
+       ->where('users.email', $email)
+       ->first();
+    }
+
     //mencari data pengaju by id
     public static function getDataPengajuByID($id){
       return $data = DB::table('users')

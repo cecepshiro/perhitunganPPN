@@ -80,6 +80,14 @@ Route::get('petugas/edit/{id}', 'PetugasController@edit');
 Route::post('petugas/update/{id}', 'PetugasController@update');
 Route::get('petugas/hapus/{id}', 'PetugasController@destroy');
 
+//Jenis Pajak
+Route::get('jenispajak/index/', 'JenisPajakController@index');
+Route::get('jenispajak/create/', 'JenisPajakController@create');
+Route::post('jenispajak/simpan/', 'JenisPajakController@store');
+Route::get('jenispajak/detail/{id}', 'JenisPajakController@show');
+Route::get('jenispajak/edit/{id}', 'JenisPajakController@edit');
+Route::post('jenispajak/update/{id}', 'JenisPajakController@update');
+Route::get('jenispajak/hapus/{id}', 'JenisPajakController@destroy');
 
 //Push Email
 

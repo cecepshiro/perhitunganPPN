@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    //mencari data id users by email
+    public static function getIDUsers($email){
+        return $data = DB::table('users')
+         ->select('users.id')
+         ->where('users.email', $email)
+         ->value('users.id');
+      }
 }

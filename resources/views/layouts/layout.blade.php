@@ -171,6 +171,12 @@
                             <p>Data Petugas</p>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ url('jenispajak/index') }}">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Data Jenis Pajak</p>
+                        </a>
+                    </li>
                 </ul>
                 @elseif(Auth::user()->level == 1 || Auth::user()->level == 2 || Auth::user()->level == 3)
                 <ul class="nav">
@@ -423,3 +429,19 @@
 
 	    });
 	</script>
+    	<script type="text/javascript">
+        $().ready(function(){
+            demo.checkFullPageBackgroundImage();
+
+            setTimeout(function(){
+                // after 1000 ms we add the class animated to the login/register card
+                $('.card').removeClass('card-hidden');
+            }, 700)
+        });
+	</script>
+	<script type="text/javascript">
+        $(document).ready(function(){
+			demo.initWizard();
+		});
+	</script>
+

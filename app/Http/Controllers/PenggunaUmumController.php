@@ -27,8 +27,10 @@ class PenggunaUmumController extends Controller
     public function create($email)
     {
         $data = PenggunaUmum::getDataPengaju($email);
+        $data2 = PenggunaUmum::getDataPengguna($email);
         return view('pengguna_umum.form_tambah')
-        ->with('data', $data);
+        ->with('data', $data)
+        ->with('data2', $data2);
         // print_r($data);
     }
 
