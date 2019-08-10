@@ -154,18 +154,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('pengaju/index') }}">
-                            <i class="ti-view-list-alt"></i>
-                            <p>Data Pengajuan</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('pumum/index') }}">
-                            <i class="ti-view-list-alt"></i>
-                            <p>Data Pengguna</p>
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ url('petugas/index') }}">
                             <i class="ti-view-list-alt"></i>
                             <p>Data Petugas</p>
@@ -186,22 +174,16 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="">
                         <a href="{{ url('pengaju/index') }}">
                             <i class="ti-view-list-alt"></i>
-                            <p>Data Pengajuan</p>
+                            <p>Data Perizinan Pengaju</p>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('pumum/index') }}">
                             <i class="ti-view-list-alt"></i>
-                            <p>Data Pengguna</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('petugas/index') }}">
-                            <i class="ti-view-list-alt"></i>
-                            <p>Data Petugas</p>
+                            <p>Data Pengguna Umum</p>
                         </a>
                     </li>
                 </ul>
@@ -393,55 +375,139 @@
 </script>
 
 <script type="text/javascript">
-	    $(document).ready(function() {
+    $(document).ready(function () {
 
-	        $('#datatables').DataTable({
-	            "pagingType": "full_numbers",
-	            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-	            responsive: true,
-	            language: {
-	            search: "_INPUT_",
-		            searchPlaceholder: "Search records",
-		        }
-	        });
-
-
-	        var table = $('#datatables').DataTable();
-	         // Edit record
-	         table.on( 'click', '.edit', function () {
-	            $tr = $(this).closest('tr');
-
-	            var data = table.row($tr).data();
-	            alert( 'You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.' );
-	         } );
-
-	         // Delete a record
-	         table.on( 'click', '.remove', function (e) {
-	            $tr = $(this).closest('tr');
-	            table.row($tr).remove().draw();
-	            e.preventDefault();
-	         } );
-
-	        //Like record
-	        table.on( 'click', '.like', function () {
-	            alert('You clicked on Like button');
-	         });
-
-	    });
-	</script>
-    	<script type="text/javascript">
-        $().ready(function(){
-            demo.checkFullPageBackgroundImage();
-
-            setTimeout(function(){
-                // after 1000 ms we add the class animated to the login/register card
-                $('.card').removeClass('card-hidden');
-            }, 700)
+        $('#datatables').DataTable({
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            responsive: true,
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search records",
+            }
         });
-	</script>
-	<script type="text/javascript">
-        $(document).ready(function(){
-			demo.initWizard();
-		});
-	</script>
 
+
+        var table = $('#datatables').DataTable();
+        // Edit record
+        table.on('click', '.edit', function () {
+            $tr = $(this).closest('tr');
+
+            var data = table.row($tr).data();
+            alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+        });
+
+        // Delete a record
+        table.on('click', '.remove', function (e) {
+            $tr = $(this).closest('tr');
+            table.row($tr).remove().draw();
+            e.preventDefault();
+        });
+
+        //Like record
+        table.on('click', '.like', function () {
+            alert('You clicked on Like button');
+        });
+
+    });
+
+
+    $(document).ready(function () {
+
+        $('#datatables2').DataTable({
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            responsive: true,
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search records",
+            }
+        });
+
+
+        var table = $('#datatables').DataTable();
+        // Edit record
+        table.on('click', '.edit', function () {
+            $tr = $(this).closest('tr');
+
+            var data = table.row($tr).data();
+            alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+        });
+
+        // Delete a record
+        table.on('click', '.remove', function (e) {
+            $tr = $(this).closest('tr');
+            table.row($tr).remove().draw();
+            e.preventDefault();
+        });
+
+        //Like record
+        table.on('click', '.like', function () {
+            alert('You clicked on Like button');
+        });
+
+    });
+
+    $(document).ready(function () {
+
+        $('#datatables3').DataTable({
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            responsive: true,
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search records",
+            }
+        });
+
+
+        var table = $('#datatables').DataTable();
+        // Edit record
+        table.on('click', '.edit', function () {
+            $tr = $(this).closest('tr');
+
+            var data = table.row($tr).data();
+            alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+        });
+
+        // Delete a record
+        table.on('click', '.remove', function (e) {
+            $tr = $(this).closest('tr');
+            table.row($tr).remove().draw();
+            e.preventDefault();
+        });
+
+        //Like record
+        table.on('click', '.like', function () {
+            alert('You clicked on Like button');
+        });
+
+    });
+
+</script>
+<script type="text/javascript">
+    $().ready(function () {
+        demo.checkFullPageBackgroundImage();
+
+        setTimeout(function () {
+            // after 1000 ms we add the class animated to the login/register card
+            $('.card').removeClass('card-hidden');
+        }, 700)
+    });
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        demo.initWizard();
+    });
+
+</script>

@@ -43,9 +43,9 @@
                                 </tr>
                             </tfoot>
                             <tbody>
-                            <?php $no=1; ?>
+                            <?php $no=0; ?>
                             @foreach($data as $row)
-                            <? $no++ ?>
+                            <?php $no++ ?>
                                 <tr>
                                     <td>{{ $no }}</td>
                                     <td>{{ $row->nama_pengguna }}</td>

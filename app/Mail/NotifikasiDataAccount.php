@@ -6,9 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Pengaju;
+use App\User;
 
-class NotifikasiPengajuanMail extends Mailable
+class NotifikasiDataAccount extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -17,10 +17,9 @@ class NotifikasiPengajuanMail extends Mailable
      *
      * @return void
      */
-    
     protected $data;
 
-    public function __construct(Pengaju $data)
+    public function __construct(User $data)
     {
         $this->data = $data;
     }
@@ -32,9 +31,9 @@ class NotifikasiPengajuanMail extends Mailable
      */
     public function build()
     {
-        return $this->from('pengirim@noreply.com')
-                    ->subject('Notifikasi Pengajuan Akun')
-                   ->view('mail.notifikasiMail')
+         return $this->from('pengirim@noreply.com')
+                   ->subject('Informasi Pengajuan')
+                   ->view('mail.notifikasiDataAkun')
                    ->with('data', $this->data);
                     // ->attach(public_path('/hubungkan-ke-lokasi-file').'/demo.jpg', [
                     //     'as' => 'demo.jpg',

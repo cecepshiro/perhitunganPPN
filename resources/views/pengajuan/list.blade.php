@@ -14,53 +14,206 @@
 
             <div class="card">
                 <div class="card-content">
-                    <div class="toolbar">
-                        <!--Here you can write extra buttons/actions for the toolbar-->
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
                     </div>
-                    <div class="fresh-datatables">
-                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
-                            width="100%" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Pengaju</th>
-                                    <th>Email</th>
-                                    <th>Nama Usaha</th>
-                                    <th>Status</th>
-                                    <th class="disabled-sorting">Actions</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Pengaju</th>
-                                    <th>Email</th>
-                                    <th>Nama Usaha</th>
-                                    <th>Status</th>
-                                    <th class="disabled-sorting">Actions</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                            <?php $no=1; ?>
-                            @foreach($data as $row)
-                            <? $no++ ?>
-                                <tr>
-                                    <td>{{ $no }}</td>
-                                    <td>{{ $row->nama_pengaju }}</td>
-                                    <td>{{ $row->email }}</td>
-                                    <td>{{ $row->nama_usaha }}</td>
-                                    <td>{{ $row->status }}</td>
-                                    <td>
-                                        <a href="{{ url('pengaju/detail/'.$row->id_pengaju) }}" class="btn btn-primary btn-sm "></i>Detail</a>
-                                        <a href="{{ url('pengaju/hapus/'.$row->id_pengaju) }}" class="btn btn-danger btn-sm "></i>Hapus</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                    @endif
+
+                    @if ($message = Session::get('error'))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
                     </div>
-
-
+                    @endif
+                    <div class="row">
+                        <div class="left-vertical-tabs">
+                            <ul class="nav nav-stacked" role="tablist">
+                                <li class="active">
+                                    <a href="#info" role="tab" data-toggle="tab">
+                                        Pending
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#description" role="tab" data-toggle="tab">
+                                        Revisi
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#concept" role="tab" data-toggle="tab">
+                                        Accept
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="right-text-tabs">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="info">
+                                    <p>
+                                        <div class="fresh-datatables">
+                                            <table id="datatables"
+                                                class="table table-striped table-no-bordered table-hover"
+                                                cellspacing="0" width="100%" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama Pengaju</th>
+                                                        <th>Email</th>
+                                                        <th>Nama Usaha</th>
+                                                        <th>Status</th>
+                                                        <th class="disabled-sorting">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama Pengaju</th>
+                                                        <th>Email</th>
+                                                        <th>Nama Usaha</th>
+                                                        <th>Status</th>
+                                                        <th class="disabled-sorting">Actions</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    <?php $no=0; ?>
+                                                    @foreach($data2 as $row)
+                                                    <?php $no++ ?>
+                                                    <tr>
+                                                        <td>{{ $no }}</td>
+                                                        <td>{{ $row->nama_pengaju }}</td>
+                                                        <td>{{ $row->email }}</td>
+                                                        <td>{{ $row->nama_usaha }}</td>
+                                                        <td>{{ $row->status }}</td>
+                                                        <td>
+                                                            <a href="{{ url('pengaju/detail/'.$row->id_pengaju) }}"
+                                                                class="btn btn-primary btn-sm "></i>Detail</a>
+                                                            <a href="{{ url('pengaju/hapus/'.$row->id_pengaju) }}"
+                                                                class="btn btn-danger btn-sm "></i>Hapus</a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </p>
+                                </div>
+                                <div class="tab-pane" id="description">
+                                    <p>
+                                        <div class="fresh-datatables">
+                                            <table id="datatables2"
+                                                class="table table-striped table-no-bordered table-hover"
+                                                cellspacing="0" width="100%" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama Pengaju</th>
+                                                        <th>Email</th>
+                                                        <th>Nama Usaha</th>
+                                                        <th>Status</th>
+                                                        <th class="disabled-sorting">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama Pengaju</th>
+                                                        <th>Email</th>
+                                                        <th>Nama Usaha</th>
+                                                        <th>Status</th>
+                                                        <th class="disabled-sorting">Actions</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    <?php $no=0; ?>
+                                                    @foreach($data3 as $row)
+                                                    <?php $no++ ?>
+                                                    <tr>
+                                                        <td>{{ $no }}</td>
+                                                        <td>{{ $row->nama_pengaju }}</td>
+                                                        <td>{{ $row->email }}</td>
+                                                        <td>{{ $row->nama_usaha }}</td>
+                                                        <td>{{ $row->status }}</td>
+                                                        <td>
+                                                            <a href="{{ url('pengaju/detail/'.$row->id_pengaju) }}"
+                                                                class="btn btn-primary btn-sm "></i>Detail</a>
+                                                            <a href="{{ url('pengaju/hapus/'.$row->id_pengaju) }}"
+                                                                class="btn btn-danger btn-sm "></i>Hapus</a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </p>
+                                </div>
+                                <div class="tab-pane" id="concept">
+                                    <p>
+                                        <div class="fresh-datatables">
+                                            <table id="datatables3"
+                                                class="table table-striped table-no-bordered table-hover"
+                                                cellspacing="0" width="100%" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama Pengaju</th>
+                                                        <th>Email</th>
+                                                        <th>Nama Usaha</th>
+                                                        <th>Status</th>
+                                                        <th class="disabled-sorting">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama Pengaju</th>
+                                                        <th>Email</th>
+                                                        <th>Nama Usaha</th>
+                                                        <th>Status</th>
+                                                        <th class="disabled-sorting">Actions</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    <?php $no=0; ?>
+                                                    @foreach($data as $row)
+                                                    <?php $no++ ?>
+                                                    <tr>
+                                                        <td>{{ $no }}</td>
+                                                        <td>{{ $row->nama_pengaju }}</td>
+                                                        <td>{{ $row->email }}</td>
+                                                        <td>{{ $row->nama_usaha }}</td>
+                                                        <td>{{ $row->status }}</td>
+                                                        <td>
+                                                            <a href="{{ url('pengaju/detail/'.$row->id_pengaju) }}"
+                                                                class="btn btn-primary btn-sm "></i>Detail</a>
+                                                            <a href="{{ url('pengaju/hapus/'.$row->id_pengaju) }}"
+                                                                class="btn btn-danger btn-sm "></i>Hapus</a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </p>
+                                </div>
+                                <div class="tab-pane" id="support">
+                                    <p>From the seamless transition of glass and metal to the streamlined profile, every
+                                        detail was carefully considered to enhance your experience. So while its display
+                                        is larger, the phone feels just right.</p>
+                                    <p>It’s one continuous form where hardware and software function in perfect unison,
+                                        creating a new generation of phone that’s better by any measure.</p>
+                                </div>
+                                <div class="tab-pane" id="extra">
+                                    <p>Larger, yet dramatically thinner. More powerful, but remarkably power efficient.
+                                        With a smooth metal surface that seamlessly meets the new Retina HD display.
+                                    </p>
+                                    <p>It’s one continuous form where hardware and software function in perfect unison,
+                                        creating a new generation of phone that’s better by any measure.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div><!--  end card  -->
         </div> <!-- end col-md-12 -->

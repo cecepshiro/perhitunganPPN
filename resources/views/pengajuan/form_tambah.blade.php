@@ -58,7 +58,7 @@
                                                         <label class="control-label">
                                                             Nama Pengaju
                                                         </label>
-                                                        <input class="form-control" type="text" name="nama_pengaju" required
+                                                        <input class="form-control" type="text" name="nama_pengaju"  required="true"
                                                             placeholder="Masukan nama pengaju" />
                                                     </div>
                                                 </div>
@@ -78,7 +78,7 @@
                                                         <label class="control-label">
                                                             Email<star>*</star>
                                                         </label>
-                                                        <input class="form-control" type="text" name="email" required
+                                                        <input class="form-control" type="text" name="email"  required="true"
                                                             email="true" placeholder="Masukan email pengaju" />
                                                     </div>
                                                 </div>
@@ -91,7 +91,7 @@
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group">
                                                         <label class="control-label">Nama Usaha<star>*</star></label>
-                                                        <input class="form-control" autofocus type="text" name="nama_usaha" required
+                                                        <input class="form-control" autofocus type="text" name="nama_usaha"  required="true"
                                                             placeholder="Masukan nama usaha" />
                                                     </div>
                                                 </div>
@@ -100,7 +100,7 @@
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group">
                                                         <label class="control-label">Berkas Bukti Izin Usaha<star>*</star></label>
-                                                        <input class="form-control" type="file" name="file" required
+                                                        <input class="form-control" type="file" name="file"  required="true"
                                                         accept="image/jpg, image/png, .docx, .pdf"  placeholder="Masukan bukti izin usaha" />
                                                     </div>
                                                 </div>

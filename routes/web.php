@@ -34,13 +34,13 @@ Route::group(['middleware' => ['web','auth']], function(){
             return view('superadmin.home');
         //Perizinan
         }elseif(Auth::user()->level==1){
-            return view('petugas_perizinan.home');
+            return view('petugas.petugas_perizinan.home');
         //Perpajakan
         }elseif(Auth::user()->level==2){
-            return view('petugas_perpajakan.home');
+            return view('petugas.petugas_perpajakan.home');
         //Akutansi
         }elseif(Auth::user()->level==3){
-            return view('petugas_akutansi.home');
+            return view('petugas.petugas_akutansi.home');
         //Pengguna Umum
         }elseif(Auth::user()->level==4){
             return view('pengguna_umum.home');
@@ -51,6 +51,8 @@ Route::group(['middleware' => ['web','auth']], function(){
 
 //Pengaju Controller
 Route::get('pengaju/index/', 'PengajuController@index');
+// Route::get('pengaju/indexWaiting/', 'PengajuController@indexWaiting');
+// Route::get('pengaju/indexRevisi/', 'PengajuController@indexRevisi');
 Route::get('pengaju/create/', 'PengajuController@create');
 Route::post('pengaju/simpan/', 'PengajuController@store');
 Route::get('pengaju/detail/{id}', 'PengajuController@show');
@@ -58,6 +60,7 @@ Route::get('pengaju/edit/{id}', 'PengajuController@edit');
 Route::post('pengaju/update/{id}', 'PengajuController@update');
 Route::get('pengaju/hapus/{id}', 'PengajuController@destroy');
 Route::get('pengaju/createAccount/{id}', 'PengajuController@createAccount');
+Route::get('pengaju/feedbackRevisi/{id}', 'PengajuController@feedbackRevisi');
 Route::post('pengaju/storeAccount/', 'PengajuController@storeAccount');
 Route::get('pengaju/downloadIzinUsaha/{id}', 'PengajuController@downloadIzinUsaha');
 

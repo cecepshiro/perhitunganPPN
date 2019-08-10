@@ -41,9 +41,10 @@
                         </div>
                         @if($data['status'] == "pending" || $data['status'] == "revisi")
                             <a href="{{ url('pengaju/createAccount/'. $data['id_pengaju']) }}" class="btn btn-fill btn-success">Terima</a>
-                            <a href="" class="btn btn-fill btn-warning">Revisi</a>
+                            <a href="{{ url('pengaju/feedbackRevisi/'. $data['id_pengaju']) }}" class="btn btn-fill btn-warning">Revisi</a>
+                            <a href="{{ url('pengaju/index/') }}" class="btn btn-fill btn-danger">Kembali</a>
                         @else
-                            <a href="{{ url('pengaju/index') }}" class="btn btn-fill btn-danger">Kembali</a>
+                            <a href="{{ url('pengaju/index/') }}" class="btn btn-fill btn-danger">Kembali</a>
                         @endif
                     </div>
                 </form>

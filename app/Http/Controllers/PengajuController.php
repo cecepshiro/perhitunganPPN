@@ -7,6 +7,8 @@ use App\Pengaju;
 use App\User;
 use App\PenggunaUmum;
 use App\Mail\NotifikasiPengajuanMail;
+use App\Mail\NotifikasiRevisiMail;
+use App\Mail\NotifikasiDataAccount;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,11 +19,16 @@ class PengajuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Pengajuan diterima
     public function index()
     {
-        $data=Pengaju::get();
+        $data=Pengaju::getPengajuanAccept();
+        $data2=Pengaju::getPengajuanPending();
+        $data3=Pengaju::getPengajuanRevisi();
         return view('pengajuan.list')
-        ->with('data', $data);
+        ->with('data', $data)
+        ->with('data2', $data2)
+        ->with('data3', $data3);
     }
 
     /**
@@ -63,11 +70,12 @@ class PengajuController extends Controller
         $data->nama_usaha = $nama_usaha;
         $data->path_dokumen = $berkas;
         if($data->save()){
+            Mail::to($email)->send(new NotifikasiPengajuanMail($data));
             return redirect('pengaju/create')
-            ->with(['success' => 'Pengajuan berhasil dikirim']);
+            ->with(['success' => 'Permintaan pengajuan akun berhasil dikirim']);
         }else{
             return redirect('pengaju/create')
-            ->with(['error' => 'Pengajuan gagal dikirim']);
+            ->with(['error' => 'Permintaan pengajuan akun gagal dikirim']);
         }
         
     }
@@ -150,18 +158,39 @@ class PengajuController extends Controller
         }
     }
 
+    //Mengirimkan feedback ke pengaju jika di revisi
+    public function feedbackRevisi($id)
+    {
+        $status="revisi";
+        $data = Pengaju::where('id_pengaju',$id)->first();
+        $data->status = $status;
+        $tmp_email = $data['email'];
+        if($data->save()){
+            Mail::to($tmp_email)->send(new NotifikasiRevisiMail($data));
+            return redirect('pengaju/index')
+            ->with(['success' => 'Permintaan revisi berhasil dikirim kepada pengaju']);;
+        }else{
+            return redirect('pengaju/index')
+            ->with(['error' => 'Permintaan revisi gagal dikirim kepada pengaju']);
+        }
+    }
+
     //Simpan Akun Pengaju Jika di ACC
     public function storeAccount(Request $request)
     {
         $email=$request->input('email');
-        // $password=$random = str_random(6);
-        $password=$request->input('password');
+        $password=$random = str_random(6);
+        // $password=$request->input('password');
         $level="4";
+        $data2=new User();
+        $data2->email = $email;
+        $data2->password = $password;
         $data=new User();
         $data->email = $email;
         $data->password = Hash::make($password);
         $data->level = $level;
         if($data->save()){
+            Mail::to($email)->send(new NotifikasiDataAccount($data2));
             return redirect('pengaju/index')
             ->with(['success' => 'Berhasil mendaftarkan akun pengaju']);
         }else{

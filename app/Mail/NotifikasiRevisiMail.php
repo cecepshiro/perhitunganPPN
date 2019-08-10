@@ -8,7 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Pengaju;
 
-class NotifikasiPengajuanMail extends Mailable
+class NotifikasiRevisiMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -17,7 +17,6 @@ class NotifikasiPengajuanMail extends Mailable
      *
      * @return void
      */
-    
     protected $data;
 
     public function __construct(Pengaju $data)
@@ -33,8 +32,8 @@ class NotifikasiPengajuanMail extends Mailable
     public function build()
     {
         return $this->from('pengirim@noreply.com')
-                    ->subject('Notifikasi Pengajuan Akun')
-                   ->view('mail.notifikasiMail')
+                   ->subject('Revisi Pengajuan Akun')
+                   ->view('mail.notifikasiRevisi')
                    ->with('data', $this->data);
                     // ->attach(public_path('/hubungkan-ke-lokasi-file').'/demo.jpg', [
                     //     'as' => 'demo.jpg',
