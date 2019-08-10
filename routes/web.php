@@ -92,6 +92,18 @@ Route::get('jenispajak/edit/{id}', 'JenisPajakController@edit');
 Route::post('jenispajak/update/{id}', 'JenisPajakController@update');
 Route::get('jenispajak/hapus/{id}', 'JenisPajakController@destroy');
 
+//Dokumen
+Route::get('dokumen/index/', 'DokumenController@index');
+Route::get('dokumen/create/{id}', 'DokumenController@create');
+Route::post('dokumen/simpan/', 'DokumenController@store');
+Route::get('dokumen/detail/{id}', 'DokumenController@show');
+Route::get('dokumen/edit/{id}', 'DokumenController@edit');
+Route::post('dokumen/update/{id}', 'DokumenController@update');
+Route::get('dokumen/hapus/{id}', 'DokumenController@destroy');
+Route::get('dokumen/listDokumen/{id}', 'DokumenController@listDokumen');
+Route::get('dokumen/downloadDokumen/{id}', 'DokumenController@downloadDokumen');
+Route::get('dokumen/revisiDokumen/{id}', 'DokumenController@revisiDokumen');
+Route::get('dokumen/acceptDokumen/{id}', 'DokumenController@acceptDokumen');
 //Push Email
 
-Route::get('pengajuan/sendemail','PengajuController@mail');
+// Route::get('pengajuan/sendemail','PengajuController@mail');

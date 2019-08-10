@@ -54,6 +54,7 @@
                                     <td>{{ $row->jenis_kelamin }}</td>
                                     <td>{{ $row->no_telp }}</td>
                                     <td>
+                                        <a href="{{ url('dokumen/listDokumen/'.$row->user_id) }}" class="btn btn-warning btn-sm "></i>Dokumen</a>
                                         <a href="{{ url('pumum/detail/'.$row->id_pengguna) }}" class="btn btn-primary btn-sm "></i>Detail</a>
                                         <a href="{{ url('pumum/hapus/'.$row->id_pengguna) }}" class="btn btn-danger btn-sm "></i>Hapus</a>
                                     </td>

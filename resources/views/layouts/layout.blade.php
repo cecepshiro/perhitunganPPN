@@ -201,6 +201,12 @@
                             <p>Kelola Profil</p>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ url('dokumen/listDokumen/'.Auth::user()->id) }}">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Kelola Dokumen</p>
+                        </a>
+                    </li>
                 </ul>
                 @endif
             </div>

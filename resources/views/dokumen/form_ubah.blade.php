@@ -4,11 +4,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <form method="POST" action="{{ url('jenispajak/simpan') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ url('dokumen/update/'.$data['id_dokumen']) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
                         <h4 class="card-title">
-                            Tambah Data Jenis Pajak
+                            Tambah Data Dokumen
                         </h4>
                     </div>
                     <div class="card-content">
@@ -26,15 +26,16 @@
                         </div>
                         @endif
                         <div class="form-group">
-                            <label>Jenis Pajak</label>
-                            <input type="text" placeholder="" name="jenis_pajak" required autofocus class="form-control">
+                            <label>Nama Dokumen</label>
+                            <input type="text" placeholder="Masukan nama dokumen" required name="nama_dokumen" value="{{ $data['nama_dokumen'] }}" autofocus class="form-control">
+                            <input type="hidden" placeholder="" name="user_id" value="{{ $data['user_id'] }}" required autofocus class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Besar Pajak</label>
-                            <input type="text" placeholder="" name="besar_pajak" required class="form-control">
+                            <label>Dokumen</label>
+                            <input type="file" accept="image/jpg, image/jpeg, image/png, .docx, .pdf, .csv, .xls"  placeholder="Masukan dokumen" required name="file" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-fill btn-success">Simpan</button>
-                        <a href="{{ url('jenispajak/index') }}" class="btn btn-fill btn-danger">Kembali</a>
+                        <a href="{{ url('dokumen/listDokumen/'. $data['user_id']) }}" class="btn btn-fill btn-danger">Kembali</a>
                     </div>
                 </form>
             </div> <!-- end card -->
