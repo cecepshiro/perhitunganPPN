@@ -8,7 +8,7 @@
                     @csrf
                     <div class="card-header">
                         <h4 class="card-title">
-                            Tambah Data Dokumen
+                            Revisi Data Dokumen
                         </h4>
                     </div>
                     <div class="card-content">
@@ -29,6 +29,8 @@
                             <label>Nama Dokumen</label>
                             <input type="text" placeholder="Masukan nama dokumen" required name="nama_dokumen" value="{{ $data['nama_dokumen'] }}" autofocus class="form-control">
                             <input type="hidden" placeholder="" name="user_id" value="{{ $data['user_id'] }}" required autofocus class="form-control">
+                            <input type="hidden" placeholder="" name="id_dokumen" value="{{ $data['id_dokumen'] }}" required autofocus class="form-control">
+                            <input type="hidden" placeholder="" name="id_detail_dokumen" value="{{ $data['id_detail_dokumen'] }}" required autofocus class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Dokumen</label>

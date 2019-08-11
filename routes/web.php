@@ -103,7 +103,9 @@ Route::get('dokumen/hapus/{id}', 'DokumenController@destroy');
 Route::get('dokumen/listDokumen/{id}', 'DokumenController@listDokumen');
 Route::get('dokumen/downloadDokumen/{id}', 'DokumenController@downloadDokumen');
 Route::get('dokumen/revisiDokumen/{id}', 'DokumenController@revisiDokumen');
+Route::get('dokumen/revisiDokumenKembali/{id}', 'DokumenController@revisiDokumenKembali');
 Route::get('dokumen/acceptDokumen/{id}', 'DokumenController@acceptDokumen');
-//Push Email
+Route::get('dokumen/logDokumen/{id}', 'DokumenController@logDokumen');
 
+//Push Email
 // Route::get('pengajuan/sendemail','PengajuController@mail');

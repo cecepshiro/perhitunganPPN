@@ -59,15 +59,41 @@
                                     </td>
                                     <td>{{ $row->status }}</td>
                                     <td>
+                                        <!-- bagian petugas -->
                                         @if(Auth::user()->level==1)
-                                        <a href="{{ url('dokumen/revisiDokumen/'.$row->id_dokumen) }}"
-                                            class="btn btn-warning btn-sm "></i>Revisi</a>
-                                        <a href="{{ url('dokumen/acceptDokumen/'.$row->id_dokumen) }}"
-                                            class="btn btn-success btn-sm "></i>Accept</a>
+                                            @if($row->status=="revisi" || $row->status=="accept")
+                                                <a href="{{ url('dokumen/logDokumen/'.$row->id_dokumen) }}"
+                                                class="btn btn-warning btn-sm"></i>Log Dokumen</a>
+                                                <!-- <a href="{{ url('dokumen/acceptDokumen/'.$row->id_dokumen) }}"
+                                                class="btn btn-success btn-sm "></i>Accept</a> -->
+                                            @elseif($row->status=="revisi dikonfirmasi")
+                                                <a href="{{ url('dokumen/revisiDokumenKembali/'.$row->id_detail_dokumen) }}"
+                                                class="btn btn-warning btn-sm "></i>Revisi</a>
+                                                <a href="{{ url('dokumen/acceptDokumen/'.$row->id_detail_dokumen) }}"
+                                                class="btn btn-success btn-sm "></i>Accept</a>
+                                            @else
+                                                <a href="{{ url('dokumen/revisiDokumen/'.$row->id_detail_dokumen) }}"
+                                                class="btn btn-warning btn-sm "></i>Revisi</a>
+                                                <a href="{{ url('dokumen/acceptDokumen/'.$row->id_detail_dokumen) }}"
+                                                class="btn btn-success btn-sm "></i>Accept</a>
+                                            @endif
+                                        <!-- bagian pengguna -->
                                         @elseif(Auth::user()->level==4)
                                             @if($row->status=="revisi")
-                                                <a href="{{ url('dokumen/edit/'.$row->id_dokumen) }}"
+                                                <a href="{{ url('dokumen/logDokumen/'.$row->id_dokumen) }}"
+                                                class="btn btn-warning btn-sm"></i>Log Dokumen</a>
+                                                <a href="{{ url('dokumen/edit/'.$row->id_detail_dokumen) }}"
                                                 class="btn btn-info btn-sm"></i>Ubah</a>
+                                            @elseif($row->status=="revisi dikonfirmasi")
+                                                <a href="{{ url('dokumen/logDokumen/'.$row->id_dokumen) }}"
+                                                class="btn btn-warning btn-sm"></i>Log Dokumen</a>
+                                                <!-- <a href="{{ url('dokumen/hapus/'.$row->id_dokumen) }}"
+                                                class="btn btn-danger btn-sm"></i>Hapus</a> -->
+                                            @elseif($row->status=="accept")
+                                               <a href="{{ url('dokumen/logDokumen/'.$row->id_dokumen) }}"
+                                                class="btn btn-warning btn-sm"></i>Log Dokumen</a>
+                                                <a href="{{ url('dokumen/hapus/'.$row->id_dokumen) }}"
+                                                class="btn btn-danger btn-sm"></i>Hapus</a>
                                             @else
                                                 <a href="{{ url('dokumen/hapus/'.$row->id_dokumen) }}"
                                                 class="btn btn-danger btn-sm"></i>Hapus</a>
