@@ -7,6 +7,7 @@ use App\Dokumen;
 use App\DetailDokumen;
 use App\PenggunaUmum;
 use App\Mail\NotifikasiRevisiDokumenMail;
+use App\Mail\NotifikasiAcceptDokumenMail;
 use Illuminate\Support\Facades\Mail;
 use Auth;
 
@@ -213,8 +214,9 @@ class DokumenController extends Controller
         $tmp_id_dok = $data['id_dokumen'];
         $data2 = DetailDokumen::getDataEmailDokumen($tmp_id_dok);
         $tmp_email = PenggunaUmum::where('user_id',$data2->user_id)->value('email');
+        $data3 = Dokumen::find($tmp_id_dok);
         if($data->save()){
-            // Mail::to($tmp_email)->send(new NotifikasiRevisiDokumenMail($data));
+            Mail::to($tmp_email)->send(new NotifikasiRevisiDokumenMail($data3));
             return redirect('dokumen/listDokumen/'. $data2->user_id)
             ->with(['success' => 'Permintaan revisi berhasil dikirim kepada pengaju']);;
         }else{
@@ -232,8 +234,9 @@ class DokumenController extends Controller
         $tmp_id_dok = $data['id_dokumen'];
         $data2 = DetailDokumen::getDataEmailDokumen($tmp_id_dok);
         $tmp_email = PenggunaUmum::where('user_id',$data2->user_id)->value('email');
+        $data3 = Dokumen::find($tmp_id_dok);
         if($data->save()){
-            // Mail::to($tmp_email)->send(new NotifikasiRevisiDokumenMail($data));
+            Mail::to($tmp_email)->send(new NotifikasiRevisiDokumenMail($data3));
             return redirect('dokumen/listDokumen/'. $data2->user_id)
             ->with(['success' => 'Permintaan revisi berhasil dikirim kepada pengaju']);;
         }else{
@@ -253,7 +256,11 @@ class DokumenController extends Controller
          $data->status = $status;
          $tmp_id_dok = $data['id_dokumen'];
          $data2 = DetailDokumen::getDataEmailDokumen($tmp_id_dok);
+         $data3 = PenggunaUmum::where('user_id',$data2->user_id)->first();
+         $tmp_email = $data3['email'];
+         $data4 = Dokumen::find($tmp_id_dok);
          if($data->save()){
+            Mail::to($tmp_email)->send(new NotifikasiAcceptDokumenMail($data4));
              return redirect('dokumen/listDokumen/'. $data2->user_id)
              ->with(['success' => 'Dokumen telah diterima']);;
          }else{

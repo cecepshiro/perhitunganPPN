@@ -25,26 +25,27 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <div class="card card-wizard" id="wizardCard">
-                            <form id="wizardForm" method="POST" action="{{ url('pengaju/simpan') }}" enctype="multipart/form-data">
-                            {{ csrf_field() }}
+                            <form id="wizardForm" method="POST" action="{{ url('pengaju/simpan') }}"
+                                enctype="multipart/form-data">
+                                {{ csrf_field() }}
                                 <div class="card-header text-center">
                                     <h4 class="card-title">Pengajuan Akun</h4>
                                     <p class="category">Lengkapi data berikut</p>
                                 </div>
                                 <div class="card-content">
-                                @if ($message = Session::get('success'))
-                                <div class="alert alert-success alert-block">
-                                    <button type="button" class="close" data-dismiss="alert">×</button> 
-                                    <strong>{{ $message }}</strong>
-                                </div>
-                                @endif
+                                    @if ($message = Session::get('success'))
+                                    <div class="alert alert-success alert-block">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @endif
 
-                                @if ($message = Session::get('error'))
-                                <div class="alert alert-danger alert-block">
-                                    <button type="button" class="close" data-dismiss="alert">×</button> 
-                                    <strong>{{ $message }}</strong>
-                                </div>
-                                @endif
+                                    @if ($message = Session::get('error'))
+                                    <div class="alert alert-danger alert-block">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @endif
                                     <ul class="nav">
                                         <li><a href="#tab1" data-toggle="tab">Biodata</a></li>
                                         <li><a href="#tab2" data-toggle="tab">Upload Izin Usaha</a></li>
@@ -58,8 +59,8 @@
                                                         <label class="control-label">
                                                             Nama Pengaju
                                                         </label>
-                                                        <input class="form-control" type="text" name="nama_pengaju"  required="true"
-                                                            placeholder="Masukan nama pengaju" />
+                                                        <input class="form-control" type="text" name="nama_pengaju"
+                                                            required="true" placeholder="Masukan nama pengaju" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5">
@@ -67,8 +68,9 @@
                                                         <label class="control-label">
                                                             No. NPWP
                                                         </label>
-                                                        <input class="form-control" type="text" name="npwp" maxlength="15"
-                                                            required="true" placeholder="Masukan no npwp" onkeypress="return isNumberKey(event)"/>
+                                                        <input class="form-control" type="text" name="npwp"
+                                                            maxlength="15" required="true" placeholder="Masukan no npwp"
+                                                            onkeypress="return isNumberKey(event)" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -78,8 +80,9 @@
                                                         <label class="control-label">
                                                             Email<star>*</star>
                                                         </label>
-                                                        <input class="form-control" type="text" name="email"  required="true"
-                                                            email="true" placeholder="Masukan email pengaju" />
+                                                        <input class="form-control" type="text" name="email"
+                                                            required="true" email="true"
+                                                            placeholder="Masukan email pengaju" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -91,17 +94,29 @@
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group">
                                                         <label class="control-label">Nama Usaha<star>*</star></label>
-                                                        <input class="form-control" autofocus type="text" name="nama_usaha"  required="true"
+                                                        <input class="form-control" autofocus type="text"
+                                                            name="nama_usaha" required="true"
                                                             placeholder="Masukan nama usaha" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-10 col-md-offset-1">
+                                                <div class="col-md-5 col-md-offset-1">
                                                     <div class="form-group">
-                                                        <label class="control-label">Berkas Bukti Izin Usaha<star>*</star></label>
-                                                        <input class="form-control" type="file" name="file"  required="true"
-                                                        accept="image/jpg, image/png, .docx, .pdf"  placeholder="Masukan bukti izin usaha" />
+                                                        <label class="control-label">
+                                                            Keterangan Dokumen
+                                                        </label>
+                                                        <input class="form-control" type="text" name="dokumen"
+                                                            required="true" placeholder="Masukan keterangan dokumen" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Berkas Bukti Izin Usaha<star>*
+                                                            </star></label>
+                                                        <input class="form-control" type="file" name="file"
+                                                            required="true" accept="image/jpg, image/png, .docx, .pdf"
+                                                            placeholder="Masukan bukti izin usaha" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -138,11 +153,12 @@
     </div>
 </div>
 <script>
-function isNumberKey(evt){
-    var charCode = (evt.which) ? evt.which : event.keyCode
-    if (charCode > 31 && (charCode < 48 || charCode > 57))
-        return false;
-    return true;
-}
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
 </script>
 @endsection

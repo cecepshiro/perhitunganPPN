@@ -209,7 +209,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <a href="{{ url('pumum/create/'.Auth::user()->email) }}" class="btn btn-info btn-fill btn-wd">Update Profil</a>
+                            <a href="{{ url('pumum/edit/'.Auth::user()->email) }}" class="btn btn-info btn-fill btn-wd">Update Profil</a>
                         </div>
                         <div class="clearfix"></div>
                     </form>

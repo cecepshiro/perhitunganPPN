@@ -63,6 +63,10 @@ Route::get('pengaju/createAccount/{id}', 'PengajuController@createAccount');
 Route::get('pengaju/feedbackRevisi/{id}', 'PengajuController@feedbackRevisi');
 Route::post('pengaju/storeAccount/', 'PengajuController@storeAccount');
 Route::get('pengaju/downloadIzinUsaha/{id}', 'PengajuController@downloadIzinUsaha');
+Route::get('pengaju/tracking/', 'PengajuController@tracking');
+Route::post('pengaju/cekTracking/', 'PengajuController@cekTracking');
+Route::get('pengaju/updateTracking/{id}', 'PengajuController@updateTracking');
+Route::post('pengaju/saveRevisi/', 'PengajuController@saveRevisi');
 
 //Pengguna Umum Controller
 Route::get('pumum/index/', 'PenggunaUmumController@index');

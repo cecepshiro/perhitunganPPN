@@ -136,8 +136,13 @@
                                         $tmp_name = DB::table('users')
                                         ->join('data_pengguna','users.id','=','data_pengguna.user_id')
                                         ->select('data_pengguna.nama_pengguna')
+                                        ->where('users.id', Auth::user()->id)
                                         ->value('data_pengguna.nama_pengguna');
-                                        echo $tmp_name;
+                                        if(count($tmp_name)>0){
+                                            echo $tmp_name;
+                                        }else{
+                                            echo 'Lengkapi Data Diri';
+                                        }
                                     }
                                 ?>
                             </span>
@@ -201,12 +206,21 @@
                             <p>Kelola Profil</p>
                         </a>
                     </li>
+                    <?php
+                        $result = DB::table('users')
+                        ->join('data_pengguna','users.id','=','data_pengguna.user_id')
+                        ->select('data_pengguna.*')
+                        ->where('users.id', Auth::user()->id)
+                        ->first();
+                    ?>
+                    @if(count($result)>0)
                     <li>
                         <a href="{{ url('dokumen/listDokumen/'.Auth::user()->id) }}">
                             <i class="ti-view-list-alt"></i>
                             <p>Kelola Dokumen</p>
                         </a>
                     </li>
+                    @endif
                 </ul>
                 @endif
             </div>
@@ -463,6 +477,45 @@
     $(document).ready(function () {
 
         $('#datatables3').DataTable({
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            responsive: true,
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search records",
+            }
+        });
+
+
+        var table = $('#datatables').DataTable();
+        // Edit record
+        table.on('click', '.edit', function () {
+            $tr = $(this).closest('tr');
+
+            var data = table.row($tr).data();
+            alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+        });
+
+        // Delete a record
+        table.on('click', '.remove', function (e) {
+            $tr = $(this).closest('tr');
+            table.row($tr).remove().draw();
+            e.preventDefault();
+        });
+
+        //Like record
+        table.on('click', '.like', function () {
+            alert('You clicked on Like button');
+        });
+
+    });
+
+    $(document).ready(function () {
+
+        $('#datatables4').DataTable({
             "pagingType": "full_numbers",
             "lengthMenu": [
                 [10, 25, 50, -1],

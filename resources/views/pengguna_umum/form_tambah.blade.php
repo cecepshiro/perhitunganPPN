@@ -169,7 +169,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email</label>
-                                    <input type="email" class="form-control border-input" required name="email" value="{{ $data2->email }}"
+                                    <input type="email" class="form-control border-input" required readonly name="email" value="{{ $data2->email }}"
                                         placeholder="Masukan alamat email">
                                 </div>
                             </div>

@@ -41,6 +41,11 @@
                                     </a>
                                 </li>
                                 <li>
+                                    <a href="#revisidone" role="tab" data-toggle="tab">
+                                        Telah Direvisi
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="#concept" role="tab" data-toggle="tab">
                                         Accept
                                     </a>
@@ -87,10 +92,10 @@
                                                         <td>{{ $row->nama_usaha }}</td>
                                                         <td>{{ $row->status }}</td>
                                                         <td>
-                                                            <a href="{{ url('pengaju/detail/'.$row->id_pengaju) }}"
+                                                            <a href="{{ url('pengaju/detail/'.$row->id_detail_pengaju) }}"
                                                                 class="btn btn-primary btn-sm "></i>Detail</a>
-                                                            <a href="{{ url('pengaju/hapus/'.$row->id_pengaju) }}"
-                                                                class="btn btn-danger btn-sm "></i>Hapus</a>
+                                                            <!-- <a href="{{ url('pengaju/hapus/'.$row->id_pengaju) }}"
+                                                                class="btn btn-danger btn-sm "></i>Hapus</a> -->
                                                         </td>
                                                     </tr>
                                                     @endforeach
@@ -136,10 +141,10 @@
                                                         <td>{{ $row->nama_usaha }}</td>
                                                         <td>{{ $row->status }}</td>
                                                         <td>
-                                                            <a href="{{ url('pengaju/detail/'.$row->id_pengaju) }}"
+                                                            <a href="{{ url('pengaju/detail/'.$row->id_detail_pengaju) }}"
                                                                 class="btn btn-primary btn-sm "></i>Detail</a>
-                                                            <a href="{{ url('pengaju/hapus/'.$row->id_pengaju) }}"
-                                                                class="btn btn-danger btn-sm "></i>Hapus</a>
+                                                            <!-- <a href="{{ url('pengaju/hapus/'.$row->id_pengaju) }}"
+                                                                class="btn btn-danger btn-sm "></i>Hapus</a> -->
                                                         </td>
                                                     </tr>
                                                     @endforeach
@@ -185,10 +190,59 @@
                                                         <td>{{ $row->nama_usaha }}</td>
                                                         <td>{{ $row->status }}</td>
                                                         <td>
-                                                            <a href="{{ url('pengaju/detail/'.$row->id_pengaju) }}"
+                                                            <a href="{{ url('pengaju/detail/'.$row->id_detail_pengaju) }}"
                                                                 class="btn btn-primary btn-sm "></i>Detail</a>
-                                                            <a href="{{ url('pengaju/hapus/'.$row->id_pengaju) }}"
-                                                                class="btn btn-danger btn-sm "></i>Hapus</a>
+                                                            <!-- <a href="{{ url('pengaju/hapus/'.$row->id_pengaju) }}"
+                                                                class="btn btn-danger btn-sm "></i>Hapus</a> -->
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </p>
+                                </div>
+                                <div class="tab-pane" id="revisidone">
+                                    <p>
+                                        <div class="fresh-datatables">
+                                            <table id="datatables4"
+                                                class="table table-striped table-no-bordered table-hover"
+                                                cellspacing="0" width="100%" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama Pengaju</th>
+                                                        <th>Email</th>
+                                                        <th>Nama Usaha</th>
+                                                        <th>Status</th>
+                                                        <th class="disabled-sorting">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama Pengaju</th>
+                                                        <th>Email</th>
+                                                        <th>Nama Usaha</th>
+                                                        <th>Status</th>
+                                                        <th class="disabled-sorting">Actions</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    <?php $no=0; ?>
+                                                    @foreach($data4 as $row)
+                                                    <?php $no++ ?>
+                                                    <tr>
+                                                        <td>{{ $no }}</td>
+                                                        <td>{{ $row->nama_pengaju }}</td>
+                                                        <td>{{ $row->email }}</td>
+                                                        <td>{{ $row->nama_usaha }}</td>
+                                                        <td>{{ $row->status }}</td>
+                                                        <td>
+                                                            <a href="{{ url('pengaju/detail/'.$row->id_detail_pengaju) }}"
+                                                                class="btn btn-primary btn-sm "></i>Detail</a>
+                                                            <!-- <a href="{{ url('pengaju/hapus/'.$row->id_pengaju) }}"
+                                                                class="btn btn-danger btn-sm "></i>Hapus</a> -->
                                                         </td>
                                                     </tr>
                                                     @endforeach
