@@ -195,8 +195,6 @@ class DokumenController extends Controller
         ->with('data', $data)
         ->with('data2', $data2)
         ->with('data3', $data3);
-
-        // print_r($data2);
     }
 
     public function downloadDokumen($id){

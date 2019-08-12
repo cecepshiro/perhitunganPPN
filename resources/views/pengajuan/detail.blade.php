@@ -57,6 +57,7 @@
                             <input type="text" placeholder="" value="{{ $data->status }}" readonly class="form-control">
                         </div>
                         @if($data->status=="pending")
+                            <a href="{{ url('pengaju/createAccount/'. $data->id_detail_pengaju) }}" class="btn btn-fill btn-success">Terima</a>
                             <a href="{{ url('pengaju/feedbackRevisi/'. $data->id_detail_pengaju) }}" class="btn btn-fill btn-warning">Revisi</a>
                             <a href="{{ url('pengaju/index/') }}" class="btn btn-fill btn-danger">Kembali</a>
                         @elseif($data->status=="revisi dikonfirmasi")
