@@ -94,7 +94,9 @@ class PetugasController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Petugas::find($id);
+        return view('petugas.detail')
+        ->with('data', $data);
     }
 
     /**
@@ -128,6 +130,15 @@ class PetugasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Petugas::find($id)->first();
+        $data2 = User::find($data['user_id'])->first();
+        if($data->delete()){
+            $data2->delete();
+            return redirect('petugas/index')
+            ->with(['success' => 'Data petugas berhasil dihapus']);
+        }else{
+            return redirect('petugas/index')
+            ->with(['error' => 'Data petugas gagal dihapus']);
+        }
     }
 }

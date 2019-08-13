@@ -111,5 +111,22 @@ Route::get('dokumen/revisiDokumenKembali/{id}', 'DokumenController@revisiDokumen
 Route::get('dokumen/acceptDokumen/{id}', 'DokumenController@acceptDokumen');
 Route::get('dokumen/logDokumen/{id}', 'DokumenController@logDokumen');
 
+//Pajak
+Route::get('pajak/listPajak/{id}', 'PajakController@listPajak');
+Route::get('pajak/index', 'PajakController@index');
+Route::get('pajak/create/{id}', 'PajakController@create');
+Route::post('pajak/simpan/', 'PajakController@store');
+Route::get('pajak/detail/{id}', 'PajakController@show');
+Route::get('pajak/edit/{id}', 'PajakController@edit');
+Route::post('pajak/update/{id}', 'PajakController@update');
+Route::get('pajak/hapus/{id}', 'PajakController@destroy');
+Route::get('pajak/konfirmasiBesaran/{id}', 'PajakController@konfirmasiBesaran');
+Route::post('pajak/uploadBukti/{id}', 'PajakController@uploadBukti');
+Route::post('pajak/saveBesaran/{id}', 'PajakController@saveBesaran');
+Route::get('pajak/formUploadBukti/{id}', 'PajakController@formUploadBukti');
+Route::get('pajak/formKonfirmasiBukti/{id}', 'PajakController@formKonfirmasiBukti');
+Route::get('pajak/downloadBuktiBayar/{id}', 'PajakController@downloadBuktiBayar');
+Route::post('pajak/konfirmasiBukti/{id}', 'PajakController@konfirmasiBukti');
+
 //Push Email
 // Route::get('pengajuan/sendemail','PengajuController@mail');

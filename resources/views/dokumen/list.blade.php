@@ -90,6 +90,8 @@
                                                 <!-- <a href="{{ url('dokumen/hapus/'.$row->id_dokumen) }}"
                                                 class="btn btn-danger btn-sm"></i>Hapus</a> -->
                                             @elseif($row->status=="accept")
+                                                <a href="{{ url('pajak/create/'.$row->id_dokumen) }}"
+                                                class="btn btn-success btn-sm "></i>Input Omset</a>
                                                <a href="{{ url('dokumen/logDokumen/'.$row->id_dokumen) }}"
                                                 class="btn btn-warning btn-sm"></i>Log Dokumen</a>
                                                 <a href="{{ url('dokumen/hapus/'.$row->id_dokumen) }}"

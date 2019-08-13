@@ -117,23 +117,11 @@
                                     if(Auth::user()->level == 0){
                                         echo 'HALO Super Admin';
                                     }elseif(Auth::user()->level == 1){
-                                        $tmp_name = DB::table('users')
-                                        ->join('data_petugas','users.id','=','data_petugas.user_id')
-                                        ->select('data_petugas.nama_petugas')
-                                        ->value('data_petugas.nama_petugas');
-                                        echo $tmp_name;
+                                        echo 'HALO Petugas Perizinan';
                                     }elseif(Auth::user()->level == 2){
-                                        $tmp_name = DB::table('users')
-                                        ->join('data_petugas','users.id','=','data_petugas.user_id')
-                                        ->select('data_petugas.nama_petugas')
-                                        ->value('data_petugas.nama_petugas');
-                                        echo $tmp_name;
+                                        echo 'HALO Petugas Pajak';
                                     }elseif(Auth::user()->level == 3){
-                                        $tmp_name = DB::table('users')
-                                        ->join('data_petugas','users.id','=','data_petugas.user_id')
-                                        ->select('data_petugas.nama_petugas')
-                                        ->value('data_petugas.nama_petugas');
-                                        echo $tmp_name;
+                                        echo 'HALO Petugas Akuntansi';
                                     }elseif(Auth::user()->level == 4){
                                         $tmp_name = DB::table('users')
                                         ->join('data_pengguna','users.id','=','data_pengguna.user_id')
@@ -173,7 +161,7 @@
                         </a>
                     </li>
                 </ul>
-                @elseif(Auth::user()->level == 1 || Auth::user()->level == 2 || Auth::user()->level == 3)
+                @elseif(Auth::user()->level == 1  || Auth::user()->level == 3)
                 <ul class="nav">
                     <li class="active">
                         <a href="{{ url('/') }}">
@@ -191,6 +179,21 @@
                         <a href="{{ url('pumum/index') }}">
                             <i class="ti-view-list-alt"></i>
                             <p>Data Pengguna Umum</p>
+                        </a>
+                    </li>
+                </ul>
+                @elseif(Auth::user()->level == 2)
+                <ul class="nav">
+                    <li class="active">
+                        <a href="{{ url('/') }}">
+                            <i class="ti-bar-chart-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('pajak/index') }}">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Data Omset</p>
                         </a>
                     </li>
                 </ul>
@@ -220,6 +223,12 @@
                         <a href="{{ url('dokumen/listDokumen/'.Auth::user()->id) }}">
                             <i class="ti-view-list-alt"></i>
                             <p>Kelola Dokumen</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('pajak/listPajak/'.Auth::user()->id) }}">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Data Omset</p>
                         </a>
                     </li>
                     @endif
