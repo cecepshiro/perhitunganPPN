@@ -161,7 +161,7 @@
                         </a>
                     </li>
                 </ul>
-                @elseif(Auth::user()->level == 1  || Auth::user()->level == 3)
+                @elseif(Auth::user()->level == 1)
                 <ul class="nav">
                     <li class="active">
                         <a href="{{ url('/') }}">
@@ -183,6 +183,21 @@
                     </li>
                 </ul>
                 @elseif(Auth::user()->level == 2)
+                <ul class="nav">
+                    <li class="active">
+                        <a href="{{ url('/') }}">
+                            <i class="ti-bar-chart-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('pajak/index') }}">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Data Omset</p>
+                        </a>
+                    </li>
+                </ul>
+                @elseif(Auth::user()->level == 3)
                 <ul class="nav">
                     <li class="active">
                         <a href="{{ url('/') }}">

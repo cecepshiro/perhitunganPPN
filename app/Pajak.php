@@ -19,6 +19,7 @@ class Pajak extends Model
     public static function getStatusMenunggu(){
         return $data = DB::table('data_pajak')
          ->join('data_dokumen','data_pajak.id_dokumen','=','data_dokumen.id_dokumen')
+         ->join('data_pengguna','data_dokumen.user_id','=','data_pengguna.user_id')
          ->select('*')
          ->where('data_pajak.status', 'menunggu konfirmasi')
          ->get();
@@ -28,6 +29,7 @@ class Pajak extends Model
      public static function getStatusDikonfirmasi(){
         return $data = DB::table('data_pajak')
          ->join('data_dokumen','data_pajak.id_dokumen','=','data_dokumen.id_dokumen')
+         ->join('data_pengguna','data_dokumen.user_id','=','data_pengguna.user_id')
          ->select('*')
          ->where('data_pajak.status', 'pembayaran dikonfirmasi')
          ->get();
@@ -37,6 +39,7 @@ class Pajak extends Model
      public static function getStatusBelumBayar(){
         return $data = DB::table('data_pajak')
          ->join('data_dokumen','data_pajak.id_dokumen','=','data_dokumen.id_dokumen')
+         ->join('data_pengguna','data_dokumen.user_id','=','data_pengguna.user_id')
          ->select('*')
          ->where('data_pajak.status', 'belum terbayar')
          ->get();
@@ -46,10 +49,21 @@ class Pajak extends Model
      public static function getStatusSudahBayar(){
         return $data = DB::table('data_pajak')
          ->join('data_dokumen','data_pajak.id_dokumen','=','data_dokumen.id_dokumen')
+         ->join('data_pengguna','data_dokumen.user_id','=','data_pengguna.user_id')
          ->select('*')
          ->where('data_pajak.status', 'sudah terbayar')
          ->get();
       }
+
+      //mengambil data detail pajak
+     public static function getDetailPajak($id){
+      return $data = DB::table('data_pajak')
+       ->join('data_dokumen','data_pajak.id_dokumen','=','data_dokumen.id_dokumen')
+       ->join('data_pengguna','data_dokumen.user_id','=','data_pengguna.user_id')
+       ->select('*')
+       ->where('data_pajak.id_pajak', $id)
+       ->first();
+    }
 
 
 }

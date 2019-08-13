@@ -30,17 +30,19 @@
                     <div class="row">
                         <div class="left-vertical-tabs">
                             <ul class="nav nav-stacked" role="tablist">
+                            @if(Auth::user()->level==2)
                                 <li class="active">
                                     <a href="#info" role="tab" data-toggle="tab">
                                         Menunggu Konfirmasi
                                     </a>
                                 </li>
+                            @elseif(Auth::user()->level==3)
                                 <li>
                                     <a href="#description" role="tab" data-toggle="tab">
                                         Belum Terbayar
                                     </a>
                                 </li>
-                                <li>
+                                <li class="active">
                                     <a href="#revisidone" role="tab" data-toggle="tab">
                                         Sudah Terbayar
                                     </a>
@@ -50,6 +52,7 @@
                                         Pembayaran Dikonfirmasi
                                     </a>
                                 </li>
+                            @endif
                             </ul>
                         </div>
                         <div class="right-text-tabs">
@@ -65,8 +68,8 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>ID Pajak</th>
-                                                        <th>ID Dokumen</th>
-                                                        <th>Omset</th>
+                                                        <th>ID Pengguna</th>
+                                                        <th>Nama</th>
                                                         <th>Status</th>
                                                         <th class="disabled-sorting">Actions</th>
                                                     </tr>
@@ -75,8 +78,8 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>ID Pajak</th>
-                                                        <th>ID Dokumen</th>
-                                                        <th>Omset</th>
+                                                        <th>ID Pengguna</th>
+                                                        <th>Nama</th>
                                                         <th>Status</th>
                                                         <th class="disabled-sorting">Actions</th>
                                                     </tr>
@@ -88,8 +91,8 @@
                                                     <tr>
                                                         <td>{{ $no }}</td>
                                                         <td>{{ $row->id_pajak }}</td>
-                                                        <td>{{ $row->id_dokumen }}</td>
-                                                        <td>{{ $row->omset }}</td>
+                                                        <td>{{ $row->id_pengguna }}</td>
+                                                        <td>{{ $row->nama_pengguna }}</td>
                                                         <td>{{ $row->status }}</td>
                                                         <td>
                                                             @if($row->status == "belum terbayar")
@@ -115,8 +118,8 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>ID Pajak</th>
-                                                        <th>ID Dokumen</th>
-                                                        <th>Omset</th>
+                                                        <th>ID Pengguna</th>
+                                                        <th>Nama</th>
                                                         <th>Status</th>
                                                         <th class="disabled-sorting">Actions</th>
                                                     </tr>
@@ -125,8 +128,8 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>ID Pajak</th>
-                                                        <th>ID Dokumen</th>
-                                                        <th>Omset</th>
+                                                        <th>ID Pengguna</th>
+                                                        <th>Nama</th>
                                                         <th>Status</th>
                                                         <th class="disabled-sorting">Actions</th>
                                                     </tr>
@@ -138,8 +141,8 @@
                                                     <tr>
                                                         <td>{{ $no }}</td>
                                                         <td>{{ $row->id_pajak }}</td>
-                                                        <td>{{ $row->id_dokumen }}</td>
-                                                        <td>{{ $row->omset }}</td>
+                                                        <td>{{ $row->id_pengguna }}</td>
+                                                        <td>{{ $row->nama_pengguna }}</td>
                                                         <td>{{ $row->status }}</td>
                                                         <td>
                                                             @if($row->status == "belum terbayar")
@@ -166,8 +169,8 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>ID Pajak</th>
-                                                        <th>ID Dokumen</th>
-                                                        <th>Omset</th>
+                                                        <th>ID Pengguna</th>
+                                                        <th>Nama</th>
                                                         <th>Status</th>
                                                         <th class="disabled-sorting">Actions</th>
                                                     </tr>
@@ -176,8 +179,8 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>ID Pajak</th>
-                                                        <th>ID Dokumen</th>
-                                                        <th>Omset</th>
+                                                        <th>ID Pengguna</th>
+                                                        <th>Nama</th>
                                                         <th>Status</th>
                                                         <th class="disabled-sorting">Actions</th>
                                                     </tr>
@@ -189,8 +192,8 @@
                                                     <tr>
                                                         <td>{{ $no }}</td>
                                                         <td>{{ $row->id_pajak }}</td>
-                                                        <td>{{ $row->id_dokumen }}</td>
-                                                        <td>{{ $row->omset }}</td>
+                                                        <td>{{ $row->id_pengguna }}</td>
+                                                        <td>{{ $row->nama_pengguna }}</td>
                                                         <td>{{ $row->status }}</td>
                                                         <td>
                                                             @if($row->status == "belum terbayar")
@@ -216,8 +219,8 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>ID Pajak</th>
-                                                        <th>ID Dokumen</th>
-                                                        <th>Omset</th>
+                                                        <th>ID Pengguna</th>
+                                                        <th>Nama</th>
                                                         <th>Status</th>
                                                         <th class="disabled-sorting">Actions
                                                         </th>
@@ -227,8 +230,8 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>ID Pajak</th>
-                                                        <th>ID Dokumen</th>
-                                                        <th>Omset</th>
+                                                        <th>ID Pengguna</th>
+                                                        <th>Nama</th>
                                                         <th>Status</th>
                                                         <th class="disabled-sorting">Actions
                                                         </th>
@@ -241,8 +244,8 @@
                                                     <tr>
                                                         <td>{{ $no }}</td>
                                                         <td>{{ $row->id_pajak }}</td>
-                                                        <td>{{ $row->id_dokumen }}</td>
-                                                        <td>{{ $row->omset }}</td>
+                                                        <td>{{ $row->id_pengguna }}</td>
+                                                        <td>{{ $row->nama_pengguna }}</td>
                                                         <td>{{ $row->status }}</td>
                                                         <td>
                                                             @if($row->status == "belum terbayar")

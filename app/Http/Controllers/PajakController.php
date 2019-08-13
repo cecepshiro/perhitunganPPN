@@ -6,7 +6,12 @@ use Illuminate\Http\Request;
 use App\Pajak;
 use App\JenisPajak;
 use App\Dokumen;
+use App\PenggunaUmum;
 use Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotifikasiInvoiceMail;
+use App\Mail\NotifikasiBuktiBayarMail;
+use App\Mail\NotifikasiFeedbackBuktiBayarMail;
 
 class PajakController extends Controller
 {
@@ -97,8 +102,8 @@ class PajakController extends Controller
      */
     public function show($id)
     {
-        $data = Pajak::find($id);
-        $data2 = JenisPajak::where('id_jenis_pajak', $data['id_jenis_pajak'])->first();
+        $data = Pajak::getDetailPajak($id);
+        $data2 = JenisPajak::where('id_jenis_pajak', $data->id_jenis_pajak)->first();
         return view('pajak.detail')
         ->with('data', $data)
         ->with('data2', $data2);
@@ -192,7 +197,9 @@ class PajakController extends Controller
         $data->id_jenis_pajak = $id_jenis_pajak;
         $result = (($data['omset'] * $tmp_jenis_pajak) / 100);
         $data->bayaran = $result;
+        $tmp_email = PenggunaUmum::where('user_id',$data['user_id'])->value('email');
         if($data->save()){
+            Mail::to($tmp_email)->send(new NotifikasiInvoiceMail($data));
             return redirect('pajak/index/')
             ->with(['success' => 'Jenis pajak berhasil ditentukan, invoice dikirim']);
         }else{
@@ -225,7 +232,9 @@ class PajakController extends Controller
         $data  = Pajak::where('id_pajak',$id)->first();
         $data->bukti_bayar = $berkas;
         $data->status = $status;
+        $tmp_email = PenggunaUmum::where('user_id',$data['user_id'])->value('email');
         if($data->save()){
+            Mail::to($tmp_email)->send(new NotifikasiBuktiBayarMail($data));
             return redirect('pajak/listPajak/'.Auth::user()->id)
             ->with(['success' => 'Bukti bayar telah diupload, tunggu konfirmasi petugas']);
         }else{
@@ -237,8 +246,8 @@ class PajakController extends Controller
     //Form konfirmasi bukti bayar 
     public function formKonfirmasiBukti($id)
     {
-        $data = Pajak::find($id);
-        $data2 = JenisPajak::where('id_jenis_pajak', $data['id_jenis_pajak'])->first();
+        $data = Pajak::getDetailPajak($id);
+        $data2 = JenisPajak::where('id_jenis_pajak', $data->id_jenis_pajak)->first();
         return view('pajak.formKonfirmasiBukti')
         ->with('data', $data)
         ->with('data2', $data2);
@@ -250,7 +259,9 @@ class PajakController extends Controller
         $status = 'pembayaran dikonfirmasi';
         $data  = Pajak::where('id_pajak',$id)->first();
         $data->status = $status;
+        $tmp_email = PenggunaUmum::where('user_id',$data['user_id'])->value('email');
         if($data->save()){
+            Mail::to($tmp_email)->send(new NotifikasiFeedbackBuktiBayarMail($data));
             return redirect('pajak/index/')
             ->with(['success' => 'Bukti bayar dikonfirmasi']);
         }else{
