@@ -127,6 +127,10 @@ Route::get('pajak/formUploadBukti/{id}', 'PajakController@formUploadBukti');
 Route::get('pajak/formKonfirmasiBukti/{id}', 'PajakController@formKonfirmasiBukti');
 Route::get('pajak/downloadBuktiBayar/{id}', 'PajakController@downloadBuktiBayar');
 Route::post('pajak/konfirmasiBukti/{id}', 'PajakController@konfirmasiBukti');
+Route::post('pajak/inputOmset/{id}', 'PajakController@inputOmset');
+Route::get('pajak/formInputOmset/{id}', 'PajakController@formInputOmset');
 
 //Push Email
 // Route::get('pengajuan/sendemail','PengajuController@mail');
+
+Route::get('pajak/tes','PajakController@tesBulan');

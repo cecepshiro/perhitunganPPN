@@ -59,54 +59,6 @@
                                     <td>{{ $no }}</td>
                                     <td>{{ $row->id_pajak }}</td>
                                     <td>{{ $row->id_dokumen }}</td>
-                                    <td>
-                                        @if(count($row->omset) == 0)
-                                            belum diinput
-                                        @else
-                                            {{ $row->omset }}
-                                        @endif
-                                    </td>
-                                    <td>@if($row->id_jenis_pajak == null)
-                                        menunggu konfirmasi
-                                        @else
-                                        <?php
-                                            $tmp = DB::table('data_jenis_pajak')->select('jenis_pajak')->where('id_jenis_pajak', $row->id_jenis_pajak)->value('jenis_pajak');
-                                        ?>
-                                        {{ $tmp }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <?php
-                                            $tmp2 = DB::table('data_jenis_pajak')->select('besar_pajak')->where('id_jenis_pajak', $row->id_jenis_pajak)->value('besar_pajak');
-                                        ?>
-                                        @if(count($tmp2) == 0)
-                                            menunggu konfirmasi
-                                        @else
-                                            {{ $tmp2 }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if(count($row->bayaran) == 0)
-                                            menunggu konfirmasi
-                                        @else
-                                            {{ $row->bayaran }}
-                                        @endif
-                                    </td>
-                                    <td>{{ $row->status }}</td>
-                                    <td>
-                                        @if($row->status=="belum terbayar")
-                                        <a href="{{ url('pajak/formUploadBukti/'. $row->id_pajak) }}"
-                                            class="btn btn-warning btn-sm "></i>Upload Bukti Bayar</a>
-                                        @elseif($row->status=="pembayaran dikonfirmasi")
-                                        <button
-                                            class="btn btn-success btn-sm "></i>Selesai</button>
-                                        @elseif($row->status=="pending")
-                                        <a href="{{ url('pajak/formInputOmset/'. $row->id_pajak) }}"
-                                            class="btn btn-warning btn-sm "></i>Tentukan Omset Bulan Ini</a>
-                                        @else
-
-                                        @endif
-                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

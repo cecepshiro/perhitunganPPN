@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <form method="POST" action="{{ url('pajak/simpan') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ url('pajak/inputOmset/'.$data['id_pajak']) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
                         <h4 class="card-title">
@@ -26,18 +26,14 @@
                         </div>
                         @endif
                         <div class="form-group">
-                            <label>ID Dokumen</label>
-                            <input type="text" placeholder="Masukan id dokumen" value="{{ $data2['id_dokumen'] }}" required readonly name="id_dokumen" class="form-control">
+                            <label>ID Pajak</label>
+                            <input type="text" placeholder="Masukan id pajak" value="{{ $data['id_pajak'] }}" required readonly name="id_pajak" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Omset</label>
                             <input type="text" placeholder="Masukan besar omset" required name="omset" autofocus class="form-control">
                         </div>
-                        <!-- <div class="form-group">
-                            <label>Jenis Pajak</label>
-                            <input type="text" placeholder="Masukan jenis pajak" required name="id_jenis_pajak" class="form-control">
-                        </div> -->
-                        <button type="submit" class="btn btn-fill btn-success">Simpan</button>
+                        <input type="submit" class="btn btn-fill btn-success" value="Simpan">
                         <a href="{{ url('pajak/listDokumen/'. Auth::user()->id) }}" class="btn btn-fill btn-danger">Kembali</a>
                     </div>
                 </form>
