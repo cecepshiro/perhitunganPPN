@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Usaha;
+use App\PenggunaUmum;
 use Auth;
 
 class UsahaController extends Controller
@@ -142,7 +143,9 @@ class UsahaController extends Controller
     public function listUsaha($id)
     {
         $data = Usaha::where('user_id', $id)->get();
+        $data2 = PenggunaUmum::where('user_id', $id)->first();
         return view('usaha/list')
-        ->with('data', $data);
+        ->with('data', $data)
+        ->with('data2', $data2);
     }
 }

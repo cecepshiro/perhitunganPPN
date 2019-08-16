@@ -41,4 +41,13 @@ class PenggunaUmum extends Model
        ->where('users.id', $id)
        ->first();
     }
+
+    //mencari data pengguna dari data usaha dan data pengguna 
+    public static function getDetailPengguna($id){
+      return $data = DB::table('data_pengguna')
+       ->join('data_usaha', 'data_pengguna.user_id','=','data_usaha.user_id')
+       ->select('data_usaha.*','data_pengguna.*')
+       ->where('data_usaha.id_usaha', $id)
+       ->first();
+    }
 }

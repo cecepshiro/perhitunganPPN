@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Dokumen;
 use App\DetailDokumen;
 use App\Pajak;
+use App\Usaha;
 use App\PenggunaUmum;
 use App\Mail\NotifikasiRevisiDokumenMail;
 use App\Mail\NotifikasiAcceptDokumenMail;
@@ -33,7 +34,7 @@ class DokumenController extends Controller
      */
     public function create($id)
     {
-        $data = PenggunaUmum::where('user_id',$id)->first();
+        $data = Usaha::where('user_id',$id)->first();
         return view('dokumen.form_tambah')
         ->with('data', $data);
     }
@@ -80,10 +81,12 @@ class DokumenController extends Controller
         $user_id=$request->input('user_id');
         $id_dokumen=$result;
         $nama_dokumen=$request->input('nama_dokumen');
+        $id_usaha=$request->input('id_usaha');
         $dokumen=$request->input('dokumen');
         $data=new Dokumen();
         $data->id_dokumen = $id_dokumen;
         $data->user_id = $user_id;
+        $data->id_usaha = $id_usaha;
         if($data->save()){
             $data2=new DetailDokumen();
             $data2->id_dokumen = $id_dokumen;
@@ -187,10 +190,24 @@ class DokumenController extends Controller
         }
     }
 
+    // public function listDokumen($id)
+    // {
+    //     $data = Dokumen::getDetailDokumen($id);
+    //     $data2 = PenggunaUmum::where('user_id',$id)->first();
+    //     $data3 = DetailDokumen::getJumlahData($id);
+    //     $data4 = Pajak::get();
+    //     return view('dokumen.list')
+    //     ->with('data', $data)
+    //     ->with('data2', $data2)
+    //     ->with('data3', $data3)
+    //     ->with('data4', $data4);
+    // }
+
     public function listDokumen($id)
     {
-        $data = Dokumen::getDetailDokumen($id);
-        $data2 = PenggunaUmum::where('user_id',$id)->first();
+        // $data = Dokumen::getDetailDokumen($id);
+        $data = Dokumen::getDetailUsaha($id);
+        $data2 = Usaha::find($id);
         $data3 = DetailDokumen::getJumlahData($id);
         $data4 = Pajak::get();
         return view('dokumen.list')
@@ -198,6 +215,7 @@ class DokumenController extends Controller
         ->with('data2', $data2)
         ->with('data3', $data3)
         ->with('data4', $data4);
+        // print_r($data);
     }
 
     public function downloadDokumen($id){

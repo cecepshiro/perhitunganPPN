@@ -3,9 +3,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <h4 class="title">Kelola Data Dokumen - {{ $data2->nama_pengguna }}</h4>
-            <p class="category"><a href="{{ url('dokumen/create/'.$data2->user_id ) }}"
+            <h4 class="title">Kelola Data Dokumen - {{ $data2['nama_usaha'] }}</h4>
+            <p class="category"><a href="{{ url('dokumen/create/'.$data2['user_id'] ) }}"
                     class="btn btn-primary btn-md">Tambah Dokumen</a></p>
+           
             <div class="card">
                 <div class="card-content">
                     <div class="toolbar">

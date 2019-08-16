@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <h4 class="title">Kelola Data Usaha</h4>
+            <h4 class="title">Kelola Data Usaha - {{ $data2->nama_pengguna }}</h4>
             <p class="category"><a href="{{ url('usaha/create') }}" class="btn btn-primary btn-md">Tambah Data</a></p>
             <div class="card">
                 <div class="card-content">
@@ -49,8 +49,8 @@
                                     <td>{{ $row->nama_usaha }}</td>
                                     <td>{{ $row->keterangan }}</td>
                                     <td>
-                                        <a href="{{ url('dokumen/hapus/'.$row->id_usaha) }}"
-                                            class="btn btn-danger btn-sm "></i>Hapus</a>
+                                        <a href="{{ url('dokumen/listDokumen/'.$row->id_usaha) }}"
+                                            class="btn btn-warning btn-sm "></i>Daftar Dokumen</a>
                                         <a href="{{ url('usaha/hapus/'.$row->id_usaha) }}"
                                             class="btn btn-danger btn-sm "></i>Hapus</a>
                                     </td>

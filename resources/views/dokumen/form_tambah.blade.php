@@ -29,13 +29,14 @@
                             <label>Nama Dokumen</label>
                             <input type="text" placeholder="Masukan nama dokumen" required name="nama_dokumen" autofocus class="form-control">
                             <input type="hidden" placeholder="" name="user_id" value="{{ $data['user_id'] }}" required autofocus class="form-control">
+                            <input type="hidden" placeholder="" name="id_usaha" value="{{ $data['id_usaha'] }}" required autofocus class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Dokumen</label>
                             <input type="file" accept="image/jpg, image/jpeg, image/png, .docx, .pdf, .csv, .xls"  placeholder="Masukan dokumen" required name="file" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-fill btn-success">Simpan</button>
-                        <a href="{{ url('dokumen/listDokumen/'. $data['user_id']) }}" class="btn btn-fill btn-danger">Kembali</a>
+                        <a href="{{ url('dokumen/listDokumen/'. $data['id_usaha']) }}" class="btn btn-fill btn-danger">Kembali</a>
                     </div>
                 </form>
             </div> <!-- end card -->

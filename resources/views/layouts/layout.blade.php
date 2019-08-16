@@ -234,12 +234,12 @@
                         ->first();
                     ?>
                     @if(count($result)>0)
-                    <li>
+                    <!-- <li>
                         <a href="{{ url('dokumen/listDokumen/'.Auth::user()->id) }}">
                             <i class="ti-view-list-alt"></i>
                             <p>Kelola Dokumen</p>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="{{ url('usaha/listUsaha/'.Auth::user()->id) }}">
                             <i class="ti-view-list-alt"></i>
