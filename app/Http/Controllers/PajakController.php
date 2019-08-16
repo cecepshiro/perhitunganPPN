@@ -246,7 +246,6 @@ class PajakController extends Controller
 
     public function saveBesaran(Request $request, $id)
     {
-        
         $id_jenis_pajak=$request->input('id_jenis_pajak');
         $status = 'belum terbayar';
         $data2 = JenisPajak::find($id_jenis_pajak); 

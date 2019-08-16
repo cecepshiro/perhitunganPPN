@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Dokumen;
 use App\DetailDokumen;
+use App\Pajak;
 use App\PenggunaUmum;
 use App\Mail\NotifikasiRevisiDokumenMail;
 use App\Mail\NotifikasiAcceptDokumenMail;
@@ -191,10 +192,12 @@ class DokumenController extends Controller
         $data = Dokumen::getDetailDokumen($id);
         $data2 = PenggunaUmum::where('user_id',$id)->first();
         $data3 = DetailDokumen::getJumlahData($id);
+        $data4 = Pajak::get();
         return view('dokumen.list')
         ->with('data', $data)
         ->with('data2', $data2)
-        ->with('data3', $data3);
+        ->with('data3', $data3)
+        ->with('data4', $data4);
     }
 
     public function downloadDokumen($id){

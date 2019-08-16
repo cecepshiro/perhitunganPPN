@@ -241,6 +241,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ url('usaha/listUsaha/'.Auth::user()->id) }}">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Kelola Data Usaha</p>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ url('pajak/listPajak/'.Auth::user()->id) }}">
                             <i class="ti-view-list-alt"></i>
                             <p>Data Omset</p>

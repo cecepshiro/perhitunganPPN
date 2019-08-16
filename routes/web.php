@@ -130,7 +130,17 @@ Route::post('pajak/konfirmasiBukti/{id}', 'PajakController@konfirmasiBukti');
 Route::post('pajak/inputOmset/{id}', 'PajakController@inputOmset');
 Route::get('pajak/formInputOmset/{id}', 'PajakController@formInputOmset');
 
+//Usaha
+Route::get('usaha/index/', 'UsahaController@index');
+Route::get('usaha/create/', 'UsahaController@create');
+Route::post('usaha/simpan/', 'UsahaController@store');
+Route::get('usaha/detail/{id}', 'UsahaController@show');
+Route::get('usaha/edit/{id}', 'UsahaController@edit');
+Route::post('usaha/update/{id}', 'UsahaController@update');
+Route::get('usaha/hapus/{id}', 'UsahaController@destroy');
+Route::get('usaha/listUsaha/{id}', 'UsahaController@listUsaha');
+
 //Push Email
 // Route::get('pengajuan/sendemail','PengajuController@mail');
 
-Route::get('pajak/tes','PajakController@tesBulan');
+// Route::get('pajak/tes','PajakController@tesBulan');
