@@ -31,6 +31,7 @@
                             <input type="hidden" placeholder="" name="user_id" value="{{ $data['user_id'] }}" required autofocus class="form-control">
                             <input type="hidden" placeholder="" name="id_dokumen" value="{{ $data['id_dokumen'] }}" required autofocus class="form-control">
                             <input type="hidden" placeholder="" name="id_detail_dokumen" value="{{ $data['id_detail_dokumen'] }}" required autofocus class="form-control">
+                            <input type="hidden" placeholder="" name="id_usaha" value="{{ $data2['id_usaha'] }}" required autofocus class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Dokumen</label>

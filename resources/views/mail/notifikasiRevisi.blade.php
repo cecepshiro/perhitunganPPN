@@ -5,7 +5,7 @@
 <br>Nama Pengaju : {{ $data['nama_pengaju'] }}
 <br>No. NPWP : {{ $data['no_npwp'] }}
 <br>Email : {{ $data['email'] }}
-<br>Nama Usaha: {{ $data['nama_usaha'] }}
+<br>Instansi : {{ $data['instansi'] }}
 <br>
 <p>Berdasarkan pertimbangan pihak kami, bahwa pengajuan anda perlu direvisi ulang</p>
 <br>Mohon Bapak/Ibu untuk melakukan perbaikan pada berkas bukti perizinan usaha

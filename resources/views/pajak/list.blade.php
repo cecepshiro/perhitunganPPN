@@ -29,7 +29,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>ID Pajak</th>
-                                    <th>ID Dokumen</th>
+                                    <th>ID Usaha</th>
                                     <th>Omset</th>
                                     <th>Kategori</th>
                                     <th>Persentase</th>
@@ -42,7 +42,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>ID Pajak</th>
-                                    <th>ID Dokumen</th>
+                                    <th>ID Usaha</th>
                                     <th>Omset</th>
                                     <th>Kategori</th>
                                     <th>Persentase</th>
@@ -58,7 +58,7 @@
                                 <tr>
                                     <td>{{ $no }}</td>
                                     <td>{{ $row->id_pajak }}</td>
-                                    <td>{{ $row->id_dokumen }}</td>
+                                    <td>{{ $row->id_usaha }}</td>
                                     <td>
                                         @if(count($row->omset) == 0)
                                             belum diinput

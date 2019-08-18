@@ -41,8 +41,8 @@
                             <input type="text" placeholder="" value="{{ $data->email }}" readonly class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Nama Usaha</label>
-                            <input type="text" placeholder="" value="{{ $data->nama_usaha }}" readonly class="form-control">
+                            <label>Instansi</label>
+                            <input type="text" placeholder="" value="{{ $data->instansi }}" readonly class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Keterangan Dokumen</label>

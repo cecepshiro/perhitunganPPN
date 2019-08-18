@@ -93,9 +93,9 @@
                                             <div class="row">
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group">
-                                                        <label class="control-label">Nama Usaha<star>*</star></label>
+                                                        <label class="control-label">Instansi (Perusahaan / Individu)<star>*</star></label>
                                                         <input class="form-control" autofocus type="text"
-                                                            name="nama_usaha" required="true"
+                                                            name="instansi" required="true"
                                                             placeholder="Masukan nama usaha" />
                                                     </div>
                                                 </div>

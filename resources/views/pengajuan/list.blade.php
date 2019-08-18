@@ -66,7 +66,7 @@
                                                         <th>No</th>
                                                         <th>Nama Pengaju</th>
                                                         <th>Email</th>
-                                                        <th>Nama Usaha</th>
+                                                        <th>Instansi</th>
                                                         <th>Status</th>
                                                         <th class="disabled-sorting">Actions</th>
                                                     </tr>
@@ -76,7 +76,7 @@
                                                         <th>No</th>
                                                         <th>Nama Pengaju</th>
                                                         <th>Email</th>
-                                                        <th>Nama Usaha</th>
+                                                        <th>Instansi</th>
                                                         <th>Status</th>
                                                         <th class="disabled-sorting">Actions</th>
                                                     </tr>
@@ -89,7 +89,7 @@
                                                         <td>{{ $no }}</td>
                                                         <td>{{ $row->nama_pengaju }}</td>
                                                         <td>{{ $row->email }}</td>
-                                                        <td>{{ $row->nama_usaha }}</td>
+                                                        <td>{{ $row->instansi }}</td>
                                                         <td>{{ $row->status }}</td>
                                                         <td>
                                                             <a href="{{ url('pengaju/detail/'.$row->id_detail_pengaju) }}"
@@ -115,7 +115,7 @@
                                                         <th>No</th>
                                                         <th>Nama Pengaju</th>
                                                         <th>Email</th>
-                                                        <th>Nama Usaha</th>
+                                                        <th>Instansi</th>
                                                         <th>Status</th>
                                                         <th class="disabled-sorting">Actions</th>
                                                     </tr>
@@ -125,7 +125,7 @@
                                                         <th>No</th>
                                                         <th>Nama Pengaju</th>
                                                         <th>Email</th>
-                                                        <th>Nama Usaha</th>
+                                                        <th>Instansi</th>
                                                         <th>Status</th>
                                                         <th class="disabled-sorting">Actions</th>
                                                     </tr>
@@ -138,7 +138,7 @@
                                                         <td>{{ $no }}</td>
                                                         <td>{{ $row->nama_pengaju }}</td>
                                                         <td>{{ $row->email }}</td>
-                                                        <td>{{ $row->nama_usaha }}</td>
+                                                        <td>{{ $row->instansi }}</td>
                                                         <td>{{ $row->status }}</td>
                                                         <td>
                                                             <a href="{{ url('pengaju/detail/'.$row->id_detail_pengaju) }}"
@@ -164,7 +164,7 @@
                                                         <th>No</th>
                                                         <th>Nama Pengaju</th>
                                                         <th>Email</th>
-                                                        <th>Nama Usaha</th>
+                                                        <th>Instansi</th>
                                                         <th>Status</th>
                                                         <th class="disabled-sorting">Actions</th>
                                                     </tr>
@@ -174,7 +174,7 @@
                                                         <th>No</th>
                                                         <th>Nama Pengaju</th>
                                                         <th>Email</th>
-                                                        <th>Nama Usaha</th>
+                                                        <th>Instansi</th>
                                                         <th>Status</th>
                                                         <th class="disabled-sorting">Actions</th>
                                                     </tr>
@@ -187,7 +187,7 @@
                                                         <td>{{ $no }}</td>
                                                         <td>{{ $row->nama_pengaju }}</td>
                                                         <td>{{ $row->email }}</td>
-                                                        <td>{{ $row->nama_usaha }}</td>
+                                                        <td>{{ $row->instansi }}</td>
                                                         <td>{{ $row->status }}</td>
                                                         <td>
                                                             <a href="{{ url('pengaju/detail/'.$row->id_detail_pengaju) }}"
@@ -213,7 +213,7 @@
                                                         <th>No</th>
                                                         <th>Nama Pengaju</th>
                                                         <th>Email</th>
-                                                        <th>Nama Usaha</th>
+                                                        <th>Instansi</th>
                                                         <th>Status</th>
                                                         <th class="disabled-sorting">Actions</th>
                                                     </tr>
@@ -223,7 +223,7 @@
                                                         <th>No</th>
                                                         <th>Nama Pengaju</th>
                                                         <th>Email</th>
-                                                        <th>Nama Usaha</th>
+                                                        <th>Instansi</th>
                                                         <th>Status</th>
                                                         <th class="disabled-sorting">Actions</th>
                                                     </tr>
@@ -236,7 +236,7 @@
                                                         <td>{{ $no }}</td>
                                                         <td>{{ $row->nama_pengaju }}</td>
                                                         <td>{{ $row->email }}</td>
-                                                        <td>{{ $row->nama_usaha }}</td>
+                                                        <td>{{ $row->instansi }}</td>
                                                         <td>{{ $row->status }}</td>
                                                         <td>
                                                             <a href="{{ url('pengaju/detail/'.$row->id_detail_pengaju) }}"

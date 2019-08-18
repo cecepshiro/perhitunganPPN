@@ -117,8 +117,8 @@
                                                         <label class="control-label">
                                                             No. Telepon
                                                         </label>
-                                                        <input class="form-control" type="text" name="no_telp" required
-                                                            placeholder="Masukan no telepon petugas" />
+                                                        <input class="form-control" type="text" name="no_telp"   maxlength="14" required
+                                                            placeholder="Masukan no telepon petugas" onkeypress="return isNumberKey(event)" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-10 col-md-offset-1">
@@ -157,4 +157,13 @@
                     </div>
                 </div>
 </div>
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
+</script>
 @endsection

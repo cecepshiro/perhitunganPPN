@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('content')
-<div class="container-fluid"> 
+<div class="container-fluid">
     @if($data['nama_pengguna'] == null)
     <div class="row">
         <div class="col-lg-4 col-md-5">
@@ -10,9 +10,16 @@
                 </div>
                 <div class="card-content">
                     <div class="author">
-                        <img class="avatar border-white" src="../../assets/img/faces/face-2.jpg" alt="..." />
+                        <?php
+                            $tmp_data = DB::table('data_pengguna')->select('foto')->where('user_id', Auth::user()->id)->value('foto');
+                        ?>
+                        @if($tmp_data != null)
+                            <img src="{{ asset('foto_profil/'.$tmp_data) }}" class="avatar border-white"/>
+                        @else
+                            <img src="{{ asset('foto_profil/default.png') }}" class="avatar border-white"/>
+                        @endif
                         <h4 class="card-title">Isi terlebih dahulu profil diri anda<br />
-                            <a href="#"><small>{{ $data['email'] }}</small></a>
+                            <a href="#"><small></small></a>
                         </h4>
                     </div>
                 </div>
@@ -28,12 +35,12 @@
                 </div>
                 <div class="card-content">
                     <form>
-                    <div class="row">
+                        <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Bidang Usaha</label>
-                                    <input type="text" class="form-control border-input" readonly name="nama_usaha"
-                                        placeholder="Masukan nama bidang usaha" value="{{ $data2->nama_usaha }}">
+                                    <label>Instansi</label>
+                                    <input type="text" class="form-control border-input" readonly name="instansi"
+                                        placeholder="Masukan nama instansi" value="{{ $data2->instansi }}">
                                     <input type="hidden" class="form-control border-input" readonly name="user_id"
                                         placeholder="Masukan nama bidang usaha" value="{{ Auth::user()->id }}">
                                 </div>
@@ -43,15 +50,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nama Pengguna</label>
-                                    <input type="text" class="form-control border-input" disabled autofocus name="nama_pengguna" value="Kosong"
-                                        placeholder="Masukan nama pengguna">
+                                    <input type="text" class="form-control border-input" disabled autofocus
+                                        name="nama_pengguna" value="Kosong" placeholder="Masukan nama pengguna">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email</label>
-                                    <input type="email" class="form-control border-input" disabled name="email" value="Kosong"
-                                        placeholder="Masukan alamat email">
+                                    <input type="email" class="form-control border-input" disabled name="email"
+                                        value="Kosong" placeholder="Masukan alamat email">
                                 </div>
                             </div>
                         </div>
@@ -77,7 +84,8 @@
                                     <label>Jenis Kelamin</label>
                                     <div class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <input type="radio" disabled name="jenis_kelamin" id="radio1" value="L" checked>
-                                        <label for="radio1">Laki-Laki</label>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label for="radio1">Laki-Laki</label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <input type="radio" disabled name="jenis_kelamin" id="radio1" value="P">
                                         <label for="radio1">Perempuan</label>
                                     </div>
@@ -101,7 +109,8 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <a href="{{ url('pumum/create/'.Auth::user()->email) }}" class="btn btn-info btn-fill btn-wd">Update Profil</a>
+                            <a href="{{ url('pumum/create/'.Auth::user()->email) }}"
+                                class="btn btn-info btn-fill btn-wd">Update Profil</a>
                         </div>
                         <div class="clearfix"></div>
                     </form>
@@ -118,7 +127,10 @@
                 </div>
                 <div class="card-content">
                     <div class="author">
-                        <img class="avatar border-white" src="../../assets/img/faces/face-2.jpg" alt="..." />
+                        <?php
+                            $tmp_data = DB::table('data_pengguna')->select('foto')->where('user_id', Auth::user()->id)->value('foto');
+                        ?>
+                        <img src="{{ asset('foto_profil/'.$tmp_data) }}" class="avatar border-white"/>
                         <h4 class="card-title">{{ $data['nama_pengguna'] }}<br />
                             <a href="#"><small>{{ $data['email'] }}</small></a>
                         </h4>
@@ -136,12 +148,12 @@
                 </div>
                 <div class="card-content">
                     <form>
-                    <div class="row">
+                        <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Bidang Usaha</label>
-                                    <input type="text" class="form-control border-input" readonly name="nama_usaha"
-                                        placeholder="Masukan nama bidang usaha" value="{{ $data2->nama_usaha }}">
+                                    <label>Instansi</label>
+                                    <input type="text" class="form-control border-input" readonly name="instansi"
+                                        placeholder="Masukan nama instansi" value="{{ $data2->instansi }}">
                                     <input type="hidden" class="form-control border-input" readonly name="user_id"
                                         placeholder="Masukan nama bidang usaha" value="{{ Auth::user()->id }}">
                                 </div>
@@ -151,15 +163,16 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nama Pengguna</label>
-                                    <input type="text" class="form-control border-input" disabled autofocus name="nama_pengguna" value="{{ $data['nama_pengguna'] }}"
+                                    <input type="text" class="form-control border-input" disabled autofocus
+                                        name="nama_pengguna" value="{{ $data['nama_pengguna'] }}"
                                         placeholder="Masukan nama pengguna">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email</label>
-                                    <input type="email" class="form-control border-input" disabled name="email" value="{{ $data['email'] }}"
-                                        placeholder="Masukan alamat email">
+                                    <input type="email" class="form-control border-input" disabled name="email"
+                                        value="{{ $data['email'] }}" placeholder="Masukan alamat email">
                                 </div>
                             </div>
                         </div>
@@ -185,7 +198,8 @@
                                     <label>Jenis Kelamin</label>
                                     <div class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <input type="radio" disabled name="jenis_kelamin" id="radio1" value="L" checked>
-                                        <label for="radio1">Laki-Laki</label>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label for="radio1">Laki-Laki</label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <input type="radio" disabled name="jenis_kelamin" id="radio1" value="P">
                                         <label for="radio1">Perempuan</label>
                                     </div>
@@ -209,7 +223,8 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <a href="{{ url('pumum/edit/'.Auth::user()->email) }}" class="btn btn-info btn-fill btn-wd">Update Profil</a>
+                            <a href="{{ url('pumum/edit/'.Auth::user()->email) }}"
+                                class="btn btn-info btn-fill btn-wd">Update Profil</a>
                         </div>
                         <div class="clearfix"></div>
                     </form>

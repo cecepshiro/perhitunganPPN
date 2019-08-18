@@ -146,7 +146,7 @@
                                                         <td>{{ $row->status }}</td>
                                                         <td>
                                                             @if($row->status == "belum terbayar")
-                                                                <a href="{{ url('pajak/konfirmasiBesaran/'. $row->id_pajak) }}"
+                                                                <a href="{{ url('pajak/sendNotifTunggakan/'. $row->id_pajak) }}"
                                                                     class="btn btn-danger btn-sm "></i>Kirim Pengingat</a>
                                                             @else
 

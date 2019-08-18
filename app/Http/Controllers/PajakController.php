@@ -7,11 +7,13 @@ use App\Pajak;
 use App\JenisPajak;
 use App\Dokumen;
 use App\PenggunaUmum;
+use App\Usaha;
 use Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NotifikasiInvoiceMail;
 use App\Mail\NotifikasiBuktiBayarMail;
 use App\Mail\NotifikasiFeedbackBuktiBayarMail;
+use App\Mail\NotifikasiTunggakanMail;
 use DateTime;
 use DatePeriod;
 use DateInterval;
@@ -44,7 +46,7 @@ class PajakController extends Controller
      */
     public function create($id)
     {
-        $data2 = Dokumen::find($id);
+        $data2 = Usaha::find($id);
         $data = JenisPajak::get();
         return view('pajak.form_tambah')
         ->with('data', $data)
@@ -86,19 +88,19 @@ class PajakController extends Controller
         //Simpan data
         $id_pajak = $result;
         $user_id=Auth::user()->id;
-        $id_dokumen=$request->input('id_dokumen');
+        $id_usaha=$request->input('id_usaha');
         $omset=$request->input('omset');
         $status='menunggu konfirmasi';
         $data = new Pajak();
         $data->id_pajak = $id_pajak;
-        $data->id_dokumen = $id_dokumen;
+        $data->id_usaha = $id_usaha;
         $data->user_id = $user_id;
         $data->omset = $omset;
         $data->pajak_bulan = $begin;
         $data->status = $status;
         if($data->save()){
             $data = Pajak::find($result);
-            if(count($data['id_dokumen'] > 0)){
+            if(count($data['id_usaha'] > 0)){
                 // $format = new DateTimeZone("Asia/Jakarta"); //Your timezone
                 $tmp_date = new DateTime(date("Y"), $format);
                 $begin2 = $tmp_date->format('Y');
@@ -129,13 +131,13 @@ class PajakController extends Controller
                     //Save Data
                     $id_pajak = $result;
                     $user_id=Auth::user()->id;
-                    $id_dokumen=$request->input('id_dokumen');
+                    $id_usaha=$request->input('id_usaha');
                     $omset=$request->input('omset');
                     $status=$dt->format("Y-m-d");
                     $status='pending';
                     $data2 = new Pajak();
                     $data2->id_pajak = $id_pajak;
-                    $data2->id_dokumen = $id_dokumen;
+                    $data2->id_usaha = $id_usaha;
                     $data2->user_id = $user_id;
                     // $data2->omset = $omset;
                     $data2->pajak_bulan = $dt->format("Y-m-d");
@@ -374,6 +376,24 @@ class PajakController extends Controller
         $data = Pajak::find($id);
         return view('pajak.form_tambah_omset')
         ->with('data', $data);
+    }
+
+    public function listTunggakanPajak($id)
+    {
+        $format = new DateTimeZone("Asia/Jakarta"); //Your timezone
+        $begin = new DateTime(date("Y-m-d"), $format);
+        $data = Pajak::where('user_id', $id)->where('pajak_bulan','<=',$begin)->where('status','belum terbayar')->get();
+        return view('pajak.list')
+        ->with('data', $data);
+    }
+
+    public function sendNotifTunggakan($id)
+    {
+        $data = Pajak::find($id);
+        $data2 = PenggunaUmum::where('user_id',$data['user_id'])->first();
+        Mail::to($data2->email)->send(new NotifikasiTunggakanMail($data));
+        return redirect('pajak/index/')
+        ->with(['success' => 'Pengingat Tunggakan Pajak Terkirim']);
     }
 
 }

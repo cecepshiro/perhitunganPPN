@@ -26,8 +26,8 @@
                         </div>
                         @endif
                         <div class="form-group">
-                            <label>ID Dokumen</label>
-                            <input type="text" placeholder="Masukan id dokumen" value="{{ $data2['id_dokumen'] }}" required readonly name="id_dokumen" class="form-control">
+                            <label>ID Usaha</label>
+                            <input type="text" placeholder="Masukan id usaha" value="{{ $data2['id_usaha'] }}" required readonly name="id_usaha" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Omset</label>

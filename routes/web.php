@@ -105,6 +105,7 @@ Route::get('dokumen/edit/{id}', 'DokumenController@edit');
 Route::post('dokumen/update/{id}', 'DokumenController@update');
 Route::get('dokumen/hapus/{id}', 'DokumenController@destroy');
 Route::get('dokumen/listDokumen/{id}', 'DokumenController@listDokumen');
+Route::get('dokumen/listDokumenPerizinan/{id}', 'DokumenController@listDokumenPerizinan');
 Route::get('dokumen/downloadDokumen/{id}', 'DokumenController@downloadDokumen');
 Route::get('dokumen/revisiDokumen/{id}', 'DokumenController@revisiDokumen');
 Route::get('dokumen/revisiDokumenKembali/{id}', 'DokumenController@revisiDokumenKembali');
@@ -129,6 +130,8 @@ Route::get('pajak/downloadBuktiBayar/{id}', 'PajakController@downloadBuktiBayar'
 Route::post('pajak/konfirmasiBukti/{id}', 'PajakController@konfirmasiBukti');
 Route::post('pajak/inputOmset/{id}', 'PajakController@inputOmset');
 Route::get('pajak/formInputOmset/{id}', 'PajakController@formInputOmset');
+Route::get('pajak/listTunggakanPajak/{id}', 'PajakController@listTunggakanPajak');
+Route::get('pajak/sendNotifTunggakan/{id}', 'PajakController@sendNotifTunggakan');
 
 //Usaha
 Route::get('usaha/index/', 'UsahaController@index');

@@ -9,7 +9,10 @@
                 </div>
                 <div class="card-content">
                     <div class="author">
-                        <img class="avatar border-white" src="../../assets/img/faces/face-2.jpg" alt="..." />
+                        <?php
+                            $tmp_data = DB::table('data_pengguna')->select('foto')->where('user_id', Auth::user()->id)->value('foto');
+                        ?>
+                        <img src="{{ asset('foto_profil/'.$tmp_data) }}" class="avatar border-white"/>
                         <h4 class="card-title">{{ $data2->nama_pengguna }}<br />
                             <a href="#"><small>{{ $data2->email }}</small></a>
                         </h4>
@@ -31,9 +34,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Bidang Usaha</label>
-                                    <input type="text" class="form-control border-input" readonly name="nama_usaha"
-                                        placeholder="Masukan nama bidang usaha" value="{{ $data->nama_usaha }}">
+                                    <label>Instansi</label>
+                                    <input type="text" class="form-control border-input" readonly name="instansi"
+                                        placeholder="Masukan nama bidang usaha" value="{{ $data->instansi }}">
                                     <input type="hidden" class="form-control border-input" readonly name="user_id"
                                         placeholder="Masukan nama bidang usaha" value="{{ Auth::user()->id }}">
                                 </div>

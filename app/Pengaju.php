@@ -13,7 +13,7 @@ class Pengaju extends Model
     public $timestamps=true; 
     protected $fillable = [
       // 'nama_pengaju','email','path_dokumen','status','created_at','updated_at',
-      'id_pengaju','nama_pengaju','no_npwp','email','nama_usaha','created_at','updated_at',
+      'id_pengaju','nama_pengaju','no_npwp','email','instansi','created_at','updated_at',
     ];
 
     //mengambil data pengajuan yang pending

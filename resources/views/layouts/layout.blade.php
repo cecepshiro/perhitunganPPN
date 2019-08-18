@@ -108,7 +108,27 @@
                 <div class="user">
                     <div class="info">
                         <div class="photo">
-                            <img src="{{ asset('assets/img/faces/face-2.jpg') }}" />
+                            @if(Auth::user()->level==1 || Auth::user()->level==2 || Auth::user()->level==3)
+                                <?php
+                                    $tmp_data = DB::table('data_petugas')->select('foto')->where('user_id', Auth::user()->id)->value('foto');
+                                ?>
+                                @if($tmp_data != null)
+                                    <img src="{{ asset('foto_profil/'.$tmp_data) }}" />
+                                @else
+                                    <img src="{{ asset('foto_profil/default.png') }}" />
+                                @endif
+                            @elseif(Auth::user()->level==4)
+                                <?php
+                                    $tmp_data = DB::table('data_pengguna')->select('foto')->where('user_id', Auth::user()->id)->value('foto');
+                                ?>
+                                @if($tmp_data != null)
+                                    <img src="{{ asset('foto_profil/'.$tmp_data) }}" />
+                                @else
+                                    <img src="{{ asset('foto_profil/default.png') }}" />
+                                @endif
+                            @else
+                                <img src="{{ asset('foto_profil/default.png') }}" />
+                            @endif
                         </div>
 
                         <a data-toggle="" href="#" class="">
@@ -250,6 +270,12 @@
                         <a href="{{ url('pajak/listPajak/'.Auth::user()->id) }}">
                             <i class="ti-view-list-alt"></i>
                             <p>Data Omset</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('pajak/listTunggakanPajak/'.Auth::user()->id) }}">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Data Tunggakan Pajak</p>
                         </a>
                     </li>
                     @endif

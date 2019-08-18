@@ -4,8 +4,16 @@
     <div class="row">
         <div class="col-md-12">
             <h4 class="title">Kelola Data Dokumen - {{ $data2['nama_usaha'] }}</h4>
-            <p class="category"><a href="{{ url('dokumen/create/'.$data2['user_id'] ) }}"
-                    class="btn btn-primary btn-md">Tambah Dokumen</a></p>
+            <p class="category">
+                    @if(Auth::user()->level==4)
+                    <a href="{{ url('dokumen/create/'.$data2['id_usaha'] ) }}"
+                    class="btn btn-primary btn-md">Tambah Dokumen</a>
+                    @endif
+                    @if(Auth::user()->level==4 && count($tmp_count) == count($data))
+                    <a href="{{ url('pajak/create/'.$data2['id_usaha'] ) }}"
+                    class="btn btn-warning btn-md">Input Omset</a>
+                    @endif
+                    </p>
            
             <div class="card">
                 <div class="card-content">
@@ -91,8 +99,8 @@
                                                 <!-- <a href="{{ url('dokumen/hapus/'.$row->id_dokumen) }}"
                                                 class="btn btn-danger btn-sm"></i>Hapus</a> -->
                                             @elseif($row->status=="accept")
-                                                <a href="{{ url('pajak/create/'.$row->id_dokumen) }}"
-                                                class="btn btn-success btn-sm "></i>Input Omset</a>
+                                                <!-- <a href="{{ url('pajak/create/'.$row->id_dokumen) }}"
+                                                class="btn btn-success btn-sm "></i>Input Omset</a> -->
                                                <a href="{{ url('dokumen/logDokumen/'.$row->id_dokumen) }}"
                                                 class="btn btn-warning btn-sm"></i>Log Dokumen</a>
                                                 <a href="{{ url('dokumen/hapus/'.$row->id_dokumen) }}"

@@ -32,9 +32,10 @@ class DokumenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //ID Usaha
     public function create($id)
     {
-        $data = Usaha::where('user_id',$id)->first();
+        $data = Usaha::where('id_usaha',$id)->first();
         return view('dokumen.form_tambah')
         ->with('data', $data);
     }
@@ -93,10 +94,10 @@ class DokumenController extends Controller
             $data2->nama_dokumen = $nama_dokumen;
             $data2->dokumen = $berkas;
             $data2->save();
-            return redirect('dokumen/create/'.$user_id)
+            return redirect('dokumen/create/'.$id_usaha)
             ->with(['success' => 'Data berhasil disimpan']);
         }else{
-            return redirect('dokumen/create/'.$user_id)
+            return redirect('dokumen/create/'.$id_usaha)
             ->with(['error' => 'Data gagal disimpan']);
         }
     }
@@ -123,8 +124,10 @@ class DokumenController extends Controller
     public function edit($id)
     {
         $data = DetailDokumen::where('id_detail_dokumen',$id)->first();
+        $data2 = Dokumen::where('id_dokumen',$data['id_dokumen'])->first();
         return view('dokumen.form_ubah')
-        ->with('data', $data);
+        ->with('data', $data)
+        ->with('data2', $data2);
     }
 
     /**
@@ -153,6 +156,7 @@ class DokumenController extends Controller
         $id_detail_dokumen=$request->input('id_detail_dokumen');
         $nama_dokumen=$request->input('nama_dokumen');
         $dokumen=$request->input('dokumen');
+        $id_usaha=$request->input('id_usaha');
         $data = DetailDokumen::where('id_detail_dokumen',$id_detail_dokumen)->first();
         $data->status = $status;
         if($data->save()){
@@ -162,10 +166,10 @@ class DokumenController extends Controller
             $data2->dokumen = $berkas;
             $data2->status = $status2;
             $data2->save();
-            return redirect('dokumen/listDokumen/'. Auth::user()->id)
+            return redirect('dokumen/listDokumen/'. $id_usaha)
             ->with(['success' => 'Data berhasil diubah']);
         }else{
-            return redirect('dokumen/listDokumen/'. Auth::user()->id)
+            return redirect('dokumen/listDokumen/'. $id_usaha)
             ->with(['error' => 'Data gagal diubah']);
         }
     }
@@ -207,6 +211,23 @@ class DokumenController extends Controller
     {
         // $data = Dokumen::getDetailDokumen($id);
         $data = Dokumen::getDetailUsaha($id);
+        $tmp_count = Dokumen::getCountDetailUsaha($id);
+        $data2 = Usaha::find($id);
+        $data3 = DetailDokumen::getJumlahData($id);
+        $data4 = Pajak::get();
+        return view('dokumen.list')
+        ->with('data', $data)
+        ->with('data2', $data2)
+        ->with('data3', $data3)
+        ->with('data4', $data4)
+        ->with('tmp_count', $tmp_count);
+        // print_r(count($data));
+    }
+
+    public function listDokumenPerizinan($id)
+    {
+        // $data = Dokumen::getDetailDokumen($id);
+        $data = Dokumen::getDetailUsaha($id);
         $data2 = Usaha::find($id);
         $data3 = DetailDokumen::getJumlahData($id);
         $data4 = Pajak::get();
@@ -236,10 +257,10 @@ class DokumenController extends Controller
         $data3 = Dokumen::find($tmp_id_dok);
         if($data->save()){
             Mail::to($tmp_email)->send(new NotifikasiRevisiDokumenMail($data3));
-            return redirect('dokumen/listDokumen/'. $data2->user_id)
+            return redirect('dokumen/listDokumen/'. $data3['id_usaha'])
             ->with(['success' => 'Permintaan revisi berhasil dikirim kepada pengaju']);;
         }else{
-            return redirect('dokumen/listDokumen/'. $data2->user_id)
+            return redirect('dokumen/listDokumen/'. $data3['id_usaha'])
             ->with(['error' => 'Permintaan revisi gagal dikirim kepada pengaju']);
         }
     }
@@ -256,10 +277,10 @@ class DokumenController extends Controller
         $data3 = Dokumen::find($tmp_id_dok);
         if($data->save()){
             Mail::to($tmp_email)->send(new NotifikasiRevisiDokumenMail($data3));
-            return redirect('dokumen/listDokumen/'. $data2->user_id)
+            return redirect('dokumen/listDokumen/'. $data3['id_usaha'])
             ->with(['success' => 'Permintaan revisi berhasil dikirim kepada pengaju']);;
         }else{
-            return redirect('dokumen/listDokumen/'. $data2->user_id)
+            return redirect('dokumen/listDokumen/'. $data3['id_usaha'])
             ->with(['error' => 'Permintaan revisi gagal dikirim kepada pengaju']);
         }
 
@@ -280,10 +301,10 @@ class DokumenController extends Controller
          $data4 = Dokumen::find($tmp_id_dok);
          if($data->save()){
             Mail::to($tmp_email)->send(new NotifikasiAcceptDokumenMail($data4));
-             return redirect('dokumen/listDokumen/'. $data2->user_id)
+             return redirect('dokumen/listDokumen/'. $data4['id_usaha'])
              ->with(['success' => 'Dokumen telah diterima']);;
          }else{
-             return redirect('dokumen/listDokumen/'. $data2->user_id)
+             return redirect('dokumen/listDokumen/'. $data4['id_usaha'])
              ->with(['error' => 'Dokumen gagal diterima']);
          }
      }

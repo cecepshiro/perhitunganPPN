@@ -10,10 +10,20 @@
                 </div>
                 <div class="card-content">
                     <div class="author">
-                        <img class="avatar border-white" src="../../assets/img/faces/face-2.jpg" alt="..." />
-                        <h4 class="card-title">Chet Faker<br />
-                            <a href="#"><small>@chetfaker</small></a>
-                        </h4>
+                        <?php
+                            $tmp_data = DB::table('data_pengguna')->select('foto')->where('user_id', Auth::user()->id)->value('foto');
+                        ?>
+                        @if($tmp_data != null)
+                            <img src="{{ asset('foto_profil/'.$tmp_data) }}" class="avatar border-white"/>
+                            <h4 class="card-title">Isi terlebih dahulu profil diri anda<br />
+                                <a href="#"><small></small></a>
+                            </h4>
+                        @else
+                            <img src="{{ asset('foto_profil/default.png') }}" class="avatar border-white"/>
+                            <h4 class="card-title">Isi terlebih dahulu profil diri anda<br />
+                                <a href="#"><small></small></a>
+                            </h4>
+                        @endif
                     </div>
                 </div>
                 <hr>
@@ -32,9 +42,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Bidang Usaha</label>
-                                    <input type="text" class="form-control border-input" readonly name="nama_usaha"
-                                        placeholder="Masukan nama bidang usaha" value="{{ $data->nama_usaha }}">
+                                    <label>Instansi</label>
+                                    <input type="text" class="form-control border-input" readonly name="instansi"
+                                        placeholder="Masukan nama bidang usaha" value="{{ $data->instansi }}">
                                     <input type="hidden" class="form-control border-input" readonly name="user_id"
                                         placeholder="Masukan nama bidang usaha" value="{{ Auth::user()->id }}">
                                 </div>
@@ -87,7 +97,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>No. Telepon</label>
-                                    <input type="text" class="form-control border-input" required name="no_telp"
+                                    <input type="text" class="form-control border-input" maxlength="14" required name="no_telp"
                                         placeholder="Masukan no telepon" value="">
                                 </div>
                             </div>
@@ -150,9 +160,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Bidang Usaha</label>
-                                    <input type="text" class="form-control border-input" readonly name="nama_usaha"
-                                        placeholder="Masukan nama bidang usaha" value="{{ $data->nama_usaha }}">
+                                    <label>Instansi</label>
+                                    <input type="text" class="form-control border-input" readonly name="instansi"
+                                        placeholder="Masukan nama bidang usaha" value="{{ $data->instansi }}">
                                     <input type="hidden" class="form-control border-input" readonly name="user_id"
                                         placeholder="Masukan nama bidang usaha" value="{{ Auth::user()->id }}">
                                 </div>
@@ -206,7 +216,7 @@
                                 <div class="form-group">
                                     <label>No. Telepon</label>
                                     <input type="text" class="form-control border-input" required name="no_telp"
-                                        placeholder="Masukan no telepon" value="{{ $data2->no_telp }}">
+                                        placeholder="Masukan no telepon" onkeypress="return isNumberKey(event)" value="{{ $data2->no_telp }}">
                                 </div>
                             </div>
                         </div>
@@ -239,4 +249,13 @@
     </div>
     @endif
 </div>
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
+</script>
 @endsection

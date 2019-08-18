@@ -19,7 +19,7 @@ class PenggunaUmum extends Model
     public static function getDataPengaju($email){
       return $data = DB::table('users')
        ->join('data_pengaju', 'users.email','=','data_pengaju.email')
-       ->select('data_pengaju.nama_usaha','data_pengaju.email','data_pengaju.nama_pengaju')
+       ->select('data_pengaju.instansi','data_pengaju.email','data_pengaju.nama_pengaju')
        ->where('users.email', $email)
        ->first();
     }
@@ -37,7 +37,7 @@ class PenggunaUmum extends Model
     public static function getDataPengajuByID($id){
       return $data = DB::table('users')
        ->join('data_pengaju', 'users.email','=','data_pengaju.email')
-       ->select('data_pengaju.nama_usaha','data_pengaju.email','data_pengaju.nama_pengaju')
+       ->select('data_pengaju.instansi','data_pengaju.email','data_pengaju.nama_pengaju')
        ->where('users.id', $id)
        ->first();
     }

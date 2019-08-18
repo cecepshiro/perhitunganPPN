@@ -130,12 +130,12 @@ class UsahaController extends Controller
      */
     public function destroy($id)
     {
-        $data = Usaha::find($id)->first();
-        if($data->save()){
-            return redirect('usaha/index')
+        $data = Usaha::find($id);
+        if($data->delete()){
+            return redirect('usaha/listUsaha/'. Auth::user()->id)
             ->with(['success' => 'Data usaha berhasil dihapus']);
         }else{
-            return redirect('usaha/index')
+            return redirect('usaha/listUsaha/'. Auth::user()->id)
             ->with(['error' => 'Data usaha gagal dihapus']);
         }
     }

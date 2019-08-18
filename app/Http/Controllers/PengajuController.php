@@ -86,14 +86,14 @@ class PengajuController extends Controller
         $nama_pengaju=$request->input('nama_pengaju');
         $npwp=$request->input('npwp');
         $email=$request->input('email');
-        $nama_usaha=$request->input('nama_usaha');
+        $instansi=$request->input('instansi');
         $dokumen=$request->input('dokumen');
         $data=new Pengaju();
         $data->id_pengaju = $id_pengaju;
         $data->nama_pengaju = $nama_pengaju;
         $data->no_npwp = $npwp;
         $data->email = $email;
-        $data->nama_usaha = $nama_usaha;
+        $data->instansi = $instansi;
         if($data->save()){
             $data2=new DetailPengaju();
             $data2->id_pengaju = $id_pengaju;
