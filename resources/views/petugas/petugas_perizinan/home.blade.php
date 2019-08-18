@@ -9,13 +9,16 @@
                         <div class="col-xs-5">
                             <div class="icon-big icon-warning text-center">
 
-                                <i class="ti-server"></i>
+                                <i class="ti-stats-up"></i>
                             </div>
                         </div>
                         <div class="col-xs-7">
                             <div class="numbers">
-                                <p>Capacity</p>
-                                105GB
+                                <p>Total Pajak Terbayar</p>
+                                <?php
+                                    $pajak_terbayar = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'pembayaran dikonfirmasi')->count();
+                                ?>
+                                {{ $pajak_terbayar }}
                             </div>
                         </div>
                     </div>
@@ -23,12 +26,7 @@
                 <div class="card-footer">
                     <hr />
                     <div class="stats">
-                        <div class="pull-right" style="position:relative; display:inline-block;"><i
-                                class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" rel="tooltip"
-                                title="adasdasdasdasdasd adasdasdasdasdShows the total price of orders minus cost for ads."></i>
-                        </div>
-                        <i class="ti-clipboard"></i>
-                        <div class="my-inline-block" id="campaign-name4"></div>
+                        <i class="ti-timer"></i> In the last hour
                     </div>
                 </div>
             </div>
@@ -39,13 +37,16 @@
                     <div class="row">
                         <div class="col-xs-5">
                             <div class="icon-big icon-success text-center">
-                                <i class="ti-wallet"></i>
+                                <i class="ti-stats-down"></i>
                             </div>
                         </div>
                         <div class="col-xs-7">
                             <div class="numbers">
-                                <p>Revenue</p>
-                                $1,345
+                                <p>Total Pajak Tertunggak</p>
+                                <?php
+                                    $pajak_tertunggak = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'belum terbayar')->count();
+                                ?>
+                                {{ $pajak_tertunggak }}
                             </div>
                         </div>
                     </div>
@@ -53,7 +54,7 @@
                 <div class="card-footer">
                     <hr />
                     <div class="stats">
-                        <i class="ti-calendar"></i> Last day
+                        <i class="ti-timer"></i> In the last hour
                     </div>
                 </div>
             </div>
@@ -64,13 +65,16 @@
                     <div class="row">
                         <div class="col-xs-5">
                             <div class="icon-big icon-danger text-center">
-                                <i class="ti-pulse"></i>
+                                <i class="ti-pin-alt"></i>
                             </div>
                         </div>
                         <div class="col-xs-7">
                             <div class="numbers">
-                                <p>Errors</p>
-                                23
+                                <p>Jumlah Usaha Terdaftar</p>
+                                <?php
+                                    $jumlah_usaha = DB::table('data_usaha')->select('*')->count();
+                                ?>
+                                {{ $jumlah_usaha }}
                             </div>
                         </div>
                     </div>
@@ -89,13 +93,16 @@
                     <div class="row">
                         <div class="col-xs-5">
                             <div class="icon-big icon-info text-center">
-                                <i class="ti-twitter-alt"></i>
+                                <i class="ti-user"></i>
                             </div>
                         </div>
                         <div class="col-xs-7">
                             <div class="numbers">
-                                <p>Followers</p>
-                                +45
+                                <p>Pengguna Terdaftar</p>
+                                <?php
+                                    $jumlah_pengguna = DB::table('data_pengguna')->select('*')->count();
+                                ?>
+                                {{ $jumlah_pengguna }}
                             </div>
                         </div>
                     </div>
@@ -103,7 +110,7 @@
                 <div class="card-footer">
                     <hr />
                     <div class="stats">
-                        <i class="ti-reload"></i> Updated now
+                        <i class="ti-timer"></i> In the last hour
                     </div>
                 </div>
             </div>
@@ -132,22 +139,69 @@
         </div>
     </div>
 </div>
+<?php
+    //belum terbayar
+    $b_januari = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'belum terbayar')->whereMonth('data_pajak.pajak_bulan', '1')->count();
+    $b_februari = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'belum terbayar')->whereMonth('data_pajak.pajak_bulan', '2')->count();
+    $b_maret = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'belum terbayar')->whereMonth('data_pajak.pajak_bulan', '3')->count();
+    $b_april = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'belum terbayar')->whereMonth('data_pajak.pajak_bulan', '4')->count();
+    $b_mei = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'belum terbayar')->whereMonth('data_pajak.pajak_bulan', '5')->count();
+    $b_juni = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'belum terbayar')->whereMonth('data_pajak.pajak_bulan', '6')->count();
+    $b_juli = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'belum terbayar')->whereMonth('data_pajak.pajak_bulan', '7')->count();
+    $b_agustus = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'belum terbayar')->whereMonth('data_pajak.pajak_bulan', '8')->count();
+    $b_september = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'belum terbayar')->whereMonth('data_pajak.pajak_bulan', '9')->count();
+    $b_oktober = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'belum terbayar')->whereMonth('data_pajak.pajak_bulan', '10')->count();
+    $b_november = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'belum terbayar')->whereMonth('data_pajak.pajak_bulan', '11')->count();
+    $b_desember = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'belum terbayar')->whereMonth('data_pajak.pajak_bulan', '12')->count();
+    
+    //terbayar
+    $t_januari = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'pembayaran dikonfirmasi')->whereMonth('data_pajak.pajak_bulan', '1')->count();
+    $t_februari = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'pembayaran dikonfirmasi')->whereMonth('data_pajak.pajak_bulan', '2')->count();
+    $t_maret = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'pembayaran dikonfirmasi')->whereMonth('data_pajak.pajak_bulan', '3')->count();
+    $t_april = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'pembayaran dikonfirmasi')->whereMonth('data_pajak.pajak_bulan', '4')->count();
+    $t_mei = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'pembayaran dikonfirmasi')->whereMonth('data_pajak.pajak_bulan', '5')->count();
+    $t_juni = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'pembayaran dikonfirmasi')->whereMonth('data_pajak.pajak_bulan', '6')->count();
+    $t_juli = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'pembayaran dikonfirmasi')->whereMonth('data_pajak.pajak_bulan', '7')->count();
+    $t_agustus = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'pembayaran dikonfirmasi')->whereMonth('data_pajak.pajak_bulan', '8')->count();
+    $t_september = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'pembayaran dikonfirmasi')->whereMonth('data_pajak.pajak_bulan', '9')->count();
+    $t_oktober = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'pembayaran dikonfirmasi')->whereMonth('data_pajak.pajak_bulan', '10')->count();
+    $t_november = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'pembayaran dikonfirmasi')->whereMonth('data_pajak.pajak_bulan', '11')->count();
+    $t_desember = DB::table('data_pajak')->select('*')->where('data_pajak.status', 'pembayaran dikonfirmasi')->whereMonth('data_pajak.pajak_bulan', '12')->count();
+?>
 <script>
     var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            labels: ["Januari", "Ferbruari", "Maret", "April", "Mei", "Juni","Juli","Agustus","September","Oktober","November","Desember"],
             datasets: [{
-                label: '# Pengguna yang tertagih',
-                data: [12, 19, 3, 23, 2, 3],
+                label: '# Pajak yang telah terbayar',
+                data: [
+                    {{ $t_januari }}, 
+                    {{ $t_februari }}, 
+                    {{ $t_maret }}, 
+                    {{ $t_april }}, 
+                    {{ $t_mei }}, 
+                    {{ $t_juni }}, 
+                    {{ $t_juli }}, 
+                    {{ $t_agustus }}, 
+                    {{ $t_september }}, 
+                    {{ $t_oktober }}, 
+                    {{ $t_november }}, 
+                    {{ $t_desember}} ],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
                     'rgba(255, 206, 86, 0.2)',
                     'rgba(75, 192, 192, 0.2)',
                     'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(124, 80, 64, 0.2)',
+                    'rgba(211, 100, 64, 0.2)',
+                    'rgba(80, 120, 64, 0.2)',
+                    'rgba(125, 200, 64, 0.2)',
+                    'rgba(100, 180, 64, 0.2)',
+                    'rgba(90, 255, 64, 0.2)'
                 ],
                 borderColor: [
                     'rgba(255,99,132,1)',
@@ -155,6 +209,12 @@
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
                     'rgba(255, 159, 64, 1)'
                 ],
                 borderWidth: 1
@@ -177,17 +237,35 @@
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            labels: ["Januari", "Ferbruari", "Maret", "April", "Mei", "Juni","Juli","Agustus","September","Oktober","November","Desember"],
             datasets: [{
-                label: '# Pengguna yang tidak tertagih',
-                data: [12, 19, 3, 23, 2, 3],
+                label: '# Pajak yang tidak terbayar',
+                data: [
+                    {{ $b_januari }}, 
+                    {{ $b_februari }}, 
+                    {{ $b_maret }}, 
+                    {{ $b_april }}, 
+                    {{ $b_mei }}, 
+                    {{ $b_juni }}, 
+                    {{ $b_juli }}, 
+                    {{ $b_agustus }}, 
+                    {{ $b_september }}, 
+                    {{ $b_oktober }}, 
+                    {{ $b_november }}, 
+                    {{ $b_desember}} ],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
                     'rgba(255, 206, 86, 0.2)',
                     'rgba(75, 192, 192, 0.2)',
                     'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(124, 80, 64, 0.2)',
+                    'rgba(211, 100, 64, 0.2)',
+                    'rgba(80, 120, 64, 0.2)',
+                    'rgba(125, 200, 64, 0.2)',
+                    'rgba(100, 180, 64, 0.2)',
+                    'rgba(90, 255, 64, 0.2)'
                 ],
                 borderColor: [
                     'rgba(255,99,132,1)',
@@ -195,6 +273,12 @@
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
                     'rgba(255, 159, 64, 1)'
                 ],
                 borderWidth: 1
