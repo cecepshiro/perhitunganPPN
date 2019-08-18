@@ -111,6 +111,7 @@ Route::get('dokumen/revisiDokumen/{id}', 'DokumenController@revisiDokumen');
 Route::get('dokumen/revisiDokumenKembali/{id}', 'DokumenController@revisiDokumenKembali');
 Route::get('dokumen/acceptDokumen/{id}', 'DokumenController@acceptDokumen');
 Route::get('dokumen/logDokumen/{id}', 'DokumenController@logDokumen');
+Route::get('dokumen/listKategori/', 'DokumenController@listKategori');
 
 //Pajak
 Route::get('pajak/listPajak/{id}', 'PajakController@listPajak');

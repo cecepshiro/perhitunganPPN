@@ -201,6 +201,12 @@
                             <p>Data Pengguna Umum</p>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ url('dokumen/listKategori') }}">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Data Dokumen</p>
+                        </a>
+                    </li>
                 </ul>
                 @elseif(Auth::user()->level == 2)
                 <ul class="nav">

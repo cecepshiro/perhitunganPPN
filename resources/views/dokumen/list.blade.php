@@ -9,7 +9,7 @@
                     <a href="{{ url('dokumen/create/'.$data2['id_usaha'] ) }}"
                     class="btn btn-primary btn-md">Tambah Dokumen</a>
                     @endif
-                    @if(Auth::user()->level==4 && count($tmp_count) == count($data))
+                    @if(Auth::user()->level==4 && count($tmp_count) == count($data) && count($data) != 0)
                     <a href="{{ url('pajak/create/'.$data2['id_usaha'] ) }}"
                     class="btn btn-warning btn-md">Input Omset</a>
                     @endif

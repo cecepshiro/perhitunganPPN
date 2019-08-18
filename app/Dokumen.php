@@ -52,6 +52,7 @@ class Dokumen extends Model
     //    ->get();
     // }
 
+    //Hitung data detail usaha
     public static function getCountDetailUsaha($id){
       return $data = DB::table('data_dokumen')
        ->join('data_pengguna', 'data_dokumen.user_id','=','data_pengguna.user_id')
@@ -64,6 +65,7 @@ class Dokumen extends Model
        ->get();
     }
 
+    //mengambil data detail usaha
     public static function getDetailUsaha($id){
       return $data = DB::table('data_dokumen')
        ->join('data_pengguna', 'data_dokumen.user_id','=','data_pengguna.user_id')
@@ -74,4 +76,44 @@ class Dokumen extends Model
        ->whereIn('data_detail_dokumen.status', [\DB::raw("(SELECT status FROM data_detail_dokumen WHERE data_detail_dokumen.status = 'pending' OR data_detail_dokumen.status = 'accept' OR data_detail_dokumen.status = 'revisi' OR  data_detail_dokumen.status = 'revisi dikonfirmasi')")])
        ->get();
     }
+
+    public static function getAllDetailUsahaPending(){
+      return $data = DB::table('data_dokumen')
+       ->join('data_pengguna', 'data_dokumen.user_id','=','data_pengguna.user_id')
+       ->join('data_detail_dokumen', 'data_dokumen.id_dokumen','=','data_detail_dokumen.id_dokumen')
+       ->join('data_usaha', 'data_dokumen.id_usaha','=','data_usaha.id_usaha')
+       ->select('data_dokumen.*', 'data_detail_dokumen.*','data_usaha.*','data_pengguna.id_pengguna')
+       ->whereIn('data_detail_dokumen.status', [\DB::raw("(SELECT status FROM data_detail_dokumen WHERE data_detail_dokumen.status = 'pending')")])
+       ->get();
+    }
+
+    public static function getAllDetailUsahaRevisi(){
+      return $data = DB::table('data_dokumen')
+       ->join('data_pengguna', 'data_dokumen.user_id','=','data_pengguna.user_id')
+       ->join('data_detail_dokumen', 'data_dokumen.id_dokumen','=','data_detail_dokumen.id_dokumen')
+       ->join('data_usaha', 'data_dokumen.id_usaha','=','data_usaha.id_usaha')
+       ->select('data_dokumen.*', 'data_detail_dokumen.*','data_usaha.*','data_pengguna.id_pengguna')
+       ->whereIn('data_detail_dokumen.status', [\DB::raw("(SELECT status FROM data_detail_dokumen WHERE data_detail_dokumen.status = 'revisi')")])
+       ->get();
+    }
+    public static function getAllDetailUsahaKonfirm(){
+      return $data = DB::table('data_dokumen')
+       ->join('data_pengguna', 'data_dokumen.user_id','=','data_pengguna.user_id')
+       ->join('data_detail_dokumen', 'data_dokumen.id_dokumen','=','data_detail_dokumen.id_dokumen')
+       ->join('data_usaha', 'data_dokumen.id_usaha','=','data_usaha.id_usaha')
+       ->select('data_dokumen.*', 'data_detail_dokumen.*','data_usaha.*','data_pengguna.id_pengguna')
+       ->whereIn('data_detail_dokumen.status', [\DB::raw("(SELECT status FROM data_detail_dokumen WHERE data_detail_dokumen.status = 'revisi dikonfirmasi')")])
+       ->get();
+    }
+
+    public static function getAllDetailUsahaAccept(){
+      return $data = DB::table('data_dokumen')
+       ->join('data_pengguna', 'data_dokumen.user_id','=','data_pengguna.user_id')
+       ->join('data_detail_dokumen', 'data_dokumen.id_dokumen','=','data_detail_dokumen.id_dokumen')
+       ->join('data_usaha', 'data_dokumen.id_usaha','=','data_usaha.id_usaha')
+       ->select('data_dokumen.*', 'data_detail_dokumen.*','data_usaha.*','data_pengguna.id_pengguna')
+       ->whereIn('data_detail_dokumen.status', [\DB::raw("(SELECT status FROM data_detail_dokumen WHERE data_detail_dokumen.status = 'accept')")])
+       ->get();
+    }
+
 }

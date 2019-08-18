@@ -257,10 +257,12 @@ class DokumenController extends Controller
         $data3 = Dokumen::find($tmp_id_dok);
         if($data->save()){
             Mail::to($tmp_email)->send(new NotifikasiRevisiDokumenMail($data3));
-            return redirect('dokumen/listDokumen/'. $data3['id_usaha'])
+            // return redirect('dokumen/listDokumen/'. $data3['id_usaha'])
+            return redirect('dokumen/listKategori/')
             ->with(['success' => 'Permintaan revisi berhasil dikirim kepada pengaju']);;
         }else{
-            return redirect('dokumen/listDokumen/'. $data3['id_usaha'])
+            // return redirect('dokumen/listDokumen/'. $data3['id_usaha'])
+            return redirect('dokumen/listKategori/')
             ->with(['error' => 'Permintaan revisi gagal dikirim kepada pengaju']);
         }
     }
@@ -277,10 +279,12 @@ class DokumenController extends Controller
         $data3 = Dokumen::find($tmp_id_dok);
         if($data->save()){
             Mail::to($tmp_email)->send(new NotifikasiRevisiDokumenMail($data3));
-            return redirect('dokumen/listDokumen/'. $data3['id_usaha'])
+            // return redirect('dokumen/listDokumen/'. $data3['id_usaha'])
+            return redirect('dokumen/listKategori/')
             ->with(['success' => 'Permintaan revisi berhasil dikirim kepada pengaju']);;
         }else{
-            return redirect('dokumen/listDokumen/'. $data3['id_usaha'])
+            // return redirect('dokumen/listDokumen/'. $data3['id_usaha'])
+            return redirect('dokumen/listKategori/')
             ->with(['error' => 'Permintaan revisi gagal dikirim kepada pengaju']);
         }
 
@@ -301,14 +305,17 @@ class DokumenController extends Controller
          $data4 = Dokumen::find($tmp_id_dok);
          if($data->save()){
             Mail::to($tmp_email)->send(new NotifikasiAcceptDokumenMail($data4));
-             return redirect('dokumen/listDokumen/'. $data4['id_usaha'])
+            //  return redirect('dokumen/listDokumen/'. $data4['id_usaha'])
+            return redirect('dokumen/listKategori/')
              ->with(['success' => 'Dokumen telah diterima']);;
          }else{
-             return redirect('dokumen/listDokumen/'. $data4['id_usaha'])
+            //  return redirect('dokumen/listDokumen/'. $data4['id_usaha'])
+            return redirect('dokumen/listKategori/')
              ->with(['error' => 'Dokumen gagal diterima']);
          }
      }
 
+     //tracking dokumen
      public function logDokumen($id)
     {
         $data = DetailDokumen::where('id_dokumen',$id)->get();
@@ -316,5 +323,20 @@ class DokumenController extends Controller
         return view('dokumen.log_dokumen')
         ->with('data', $data)
         ->with('tmp_id_dok', $tmp_id_dok);
+    }
+
+    //list kategori persetujuan dokumen
+    public function listKategori()
+    {
+        $data = Dokumen::getAllDetailUsahaPending();
+        $data2 = Dokumen::getAllDetailUsahaRevisi();
+        $data3 = Dokumen::getAllDetailUsahaKonfirm();
+        $data4 = Dokumen::getAllDetailUsahaAccept();
+        return view('dokumen.list_kategori')
+        ->with('data', $data)
+        ->with('data2', $data2)
+        ->with('data3', $data3)
+        ->with('data4', $data4);
+        // print_r(count($data));
     }
 }
