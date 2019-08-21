@@ -107,8 +107,10 @@ Route::get('dokumen/hapus/{id}', 'DokumenController@destroy');
 Route::get('dokumen/listDokumen/{id}', 'DokumenController@listDokumen');
 Route::get('dokumen/listDokumenPerizinan/{id}', 'DokumenController@listDokumenPerizinan');
 Route::get('dokumen/downloadDokumen/{id}', 'DokumenController@downloadDokumen');
-Route::get('dokumen/revisiDokumen/{id}', 'DokumenController@revisiDokumen');
-Route::get('dokumen/revisiDokumenKembali/{id}', 'DokumenController@revisiDokumenKembali');
+// FIX
+Route::post('dokumen/revisiDokumen/{id}', 'DokumenController@revisiDokumen');
+Route::post('dokumen/revisiDokumenKembali/{id}', 'DokumenController@revisiDokumenKembali');
+// END FIX
 Route::get('dokumen/acceptDokumen/{id}', 'DokumenController@acceptDokumen');
 Route::get('dokumen/logDokumen/{id}', 'DokumenController@logDokumen');
 Route::get('dokumen/listKategori/', 'DokumenController@listKategori');

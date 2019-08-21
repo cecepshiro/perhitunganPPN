@@ -12,7 +12,7 @@ class DetailDokumen extends Model
     public $incrementing =false;
     public $timestamps=true; 
     protected $fillable = [
-      'id_dokumen','nama_dokumen','dokumen','status','created_at','updated_at',
+      'id_dokumen','nama_dokumen','dokumen','status','pesan','created_at','updated_at',
     ];
 
 

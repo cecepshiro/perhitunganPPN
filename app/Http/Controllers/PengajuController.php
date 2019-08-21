@@ -13,6 +13,7 @@ use App\Mail\NotifikasiRevisiMail;
 use App\Mail\NotifikasiDataAccount;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class PengajuController extends Controller
 {
@@ -53,59 +54,70 @@ class PengajuController extends Controller
      */
     public function store(Request $request)
     {
-
-        //upload berkas
-        if($file=$request->file('file')){
-            if($file->getClientOriginalExtension()=="docx"){
-                $name=("izin_usaha".time()).".".$file->getClientOriginalExtension();
-                $file->move('berkas_izin_usaha',$name);
-                $berkas=$name;
-            }else{
-                return "Format tidak didukung";
-            }
-        }
-
-        //kode otomatis
-        //untuk urutan kode dibalakang
-        $query = Pengaju::select('RIGHT(data_pengaju.id_pengaju,8) as kode', FALSE)->orderBy('id_pengaju','DESC')->limit(1)->count();
-       
-        if($query <> 0){      
-            //jika kode ternyata sudah ada.      
-            $data = $query;      
-            $kode = intval($data) + 1;  
-           }
-        else {      
-            //jika kode belum ada      
-             $kode = 1;    
-        }
-        $kodemax = str_pad($kode, 8, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-        //generate kode
-        $result = 'PJ'.$kodemax;
-        
-        $id_pengaju=$result;
-        $nama_pengaju=$request->input('nama_pengaju');
-        $npwp=$request->input('npwp');
-        $email=$request->input('email');
-        $instansi=$request->input('instansi');
-        $dokumen=$request->input('dokumen');
-        $data=new Pengaju();
-        $data->id_pengaju = $id_pengaju;
-        $data->nama_pengaju = $nama_pengaju;
-        $data->no_npwp = $npwp;
-        $data->email = $email;
-        $data->instansi = $instansi;
-        if($data->save()){
-            $data2=new DetailPengaju();
-            $data2->id_pengaju = $id_pengaju;
-            $data2->dokumen = $dokumen;
-            $data2->path_dokumen = $berkas;
-            $data2->save();
-            Mail::to($email)->send(new NotifikasiPengajuanMail($data));
-            return redirect('pengaju/create')
-            ->with(['success' => 'Permintaan pengajuan akun berhasil dikirim']);
+        $validator = Validator::make(request()->all(), [
+            'nama_pengaju' => 'required|string',
+            'npwp' => 'required|max:15',
+            'email' => 'required|string|email|unique:data_pengaju',
+            'instansi' => 'required'
+        ]);
+        if ($validator->fails()) {
+             return redirect('pengaju/create')
+             ->withErrors($validator->errors());
+             
         }else{
-            return redirect('pengaju/create')
-            ->with(['error' => 'Permintaan pengajuan akun gagal dikirim']);
+            //upload berkas
+            if($file=$request->file('file')){
+                if($file->getClientOriginalExtension()=="docx" || $file->getClientOriginalExtension()=="png" || $file->getClientOriginalExtension()=="jpg" || $file->getClientOriginalExtension()=="jpeg"){
+                    $name=("izin_usaha".time()).".".$file->getClientOriginalExtension();
+                    $file->move('berkas_izin_usaha',$name);
+                    $berkas=$name;
+                }else{
+                    return "Format tidak didukung";
+                }
+            }
+
+            //kode otomatis
+            //untuk urutan kode dibalakang
+            $query = Pengaju::select('RIGHT(data_pengaju.id_pengaju,8) as kode', FALSE)->orderBy('id_pengaju','DESC')->limit(1)->count();
+        
+            if($query <> 0){      
+                //jika kode ternyata sudah ada.      
+                $data = $query;      
+                $kode = intval($data) + 1;  
+            }
+            else {      
+                //jika kode belum ada      
+                $kode = 1;    
+            }
+            $kodemax = str_pad($kode, 8, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
+            //generate kode
+            $result = 'PJ'.$kodemax;
+            
+            $id_pengaju=$result;
+            $nama_pengaju=$request->input('nama_pengaju');
+            $npwp=$request->input('npwp');
+            $email=$request->input('email');
+            $instansi=$request->input('instansi');
+            $dokumen=$request->input('dokumen');
+            $data=new Pengaju();
+            $data->id_pengaju = $id_pengaju;
+            $data->nama_pengaju = $nama_pengaju;
+            $data->no_npwp = $npwp;
+            $data->email = $email;
+            $data->instansi = $instansi;
+            if($data->save()){
+                $data2=new DetailPengaju();
+                $data2->id_pengaju = $id_pengaju;
+                $data2->dokumen = $dokumen;
+                $data2->path_dokumen = $berkas;
+                $data2->save();
+                Mail::to($email)->send(new NotifikasiPengajuanMail($data));
+                return redirect('pengaju/create')
+                ->with(['success' => 'Permintaan pengajuan akun berhasil dikirim']);
+            }else{
+                return redirect('pengaju/create')
+                ->with(['error' => 'Permintaan pengajuan akun gagal dikirim']);
+            }
         }
         
     }

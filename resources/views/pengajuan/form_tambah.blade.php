@@ -57,20 +57,32 @@
                                                 <div class="col-md-5 col-md-offset-1">
                                                     <div class="form-group">
                                                         <label class="control-label">
-                                                            Nama Pengaju
+                                                            Nama Pengaju<star>*
+                                                            </star>
                                                         </label>
                                                         <input class="form-control" type="text" name="nama_pengaju"
-                                                            required="true" placeholder="Masukan nama pengaju" />
+                                                            required="true" value="{{ old('nama_pengaju') }}" placeholder="Masukan nama pengaju" />
+                                                        @if ($errors->has('nama_pengaju'))
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $errors->first('nama_pengaju') }}</strong>
+                                                            </span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5">
                                                     <div class="form-group">
                                                         <label class="control-label">
-                                                            No. NPWP
+                                                            No. NPWP<star>*
+                                                            </star>
                                                         </label>
                                                         <input class="form-control" type="text" name="npwp"
-                                                            maxlength="15" required="true" placeholder="Masukan no npwp"
+                                                            maxlength="15" required="true" value="{{ old('npwp') }}" placeholder="Masukan no npwp"
                                                             onkeypress="return isNumberKey(event)" />
+                                                        @if ($errors->has('npwp'))
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $errors->first('npwp') }}</strong>
+                                                            </span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -82,7 +94,12 @@
                                                         </label>
                                                         <input class="form-control" type="text" name="email"
                                                             required="true" email="true"
-                                                            placeholder="Masukan email pengaju" />
+                                                            placeholder="Masukan email pengaju" value="{{ old('email') }}"/>
+                                                        @if ($errors->has('email'))
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $errors->first('email') }}</strong>
+                                                            </span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -95,8 +112,13 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Instansi (Perusahaan / Individu)<star>*</star></label>
                                                         <input class="form-control" autofocus type="text"
-                                                            name="instansi" required="true"
+                                                            name="instansi" required="true" value="{{ old('instansi') }}"
                                                             placeholder="Masukan nama usaha" />
+                                                        @if ($errors->has('instansi'))
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $errors->first('instansi') }}</strong>
+                                                            </span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -104,10 +126,11 @@
                                                 <div class="col-md-5 col-md-offset-1">
                                                     <div class="form-group">
                                                         <label class="control-label">
-                                                            Keterangan Dokumen
+                                                            Keterangan Dokumen<star>*
+                                                            </star>
                                                         </label>
                                                         <input class="form-control" type="text" name="dokumen"
-                                                            required="true" placeholder="Masukan keterangan dokumen" />
+                                                            required="true" value="{{ old('keterangan') }}" placeholder="Masukan keterangan dokumen" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5">

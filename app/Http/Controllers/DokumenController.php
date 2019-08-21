@@ -85,6 +85,7 @@ class DokumenController extends Controller
         $nama_dokumen=$request->input('nama_dokumen');
         $id_usaha=$request->input('id_usaha');
         $dokumen=$request->input('dokumen');
+        $pesan=$request->input('pesan');
         $data=new Dokumen();
         $data->id_dokumen = $id_dokumen;
         $data->user_id = $user_id;
@@ -94,6 +95,7 @@ class DokumenController extends Controller
             $data2->id_dokumen = $id_dokumen;
             $data2->nama_dokumen = $nama_dokumen;
             $data2->dokumen = $berkas;
+            $data2->pesan = $pesan;
             $data2->save();
             return redirect('dokumen/create/'.$id_usaha)
             ->with(['success' => 'Data berhasil disimpan']);
@@ -158,6 +160,7 @@ class DokumenController extends Controller
         $nama_dokumen=$request->input('nama_dokumen');
         $dokumen=$request->input('dokumen');
         $id_usaha=$request->input('id_usaha');
+        $pesan=$request->input('pesan');
         $data = DetailDokumen::where('id_detail_dokumen',$id_detail_dokumen)->first();
         $data->status = $status;
         if($data->save()){
@@ -166,6 +169,7 @@ class DokumenController extends Controller
             $data2->nama_dokumen = $nama_dokumen;
             $data2->dokumen = $berkas;
             $data2->status = $status2;
+            $data2->pesan = $pesan;
             $data2->save();
             return redirect('dokumen/listDokumen/'. $id_usaha)
             ->with(['success' => 'Data berhasil diubah']);
@@ -251,11 +255,13 @@ class DokumenController extends Controller
     }
 
     //Mengirimkan feedback revisi dokumen
-    public function revisiDokumen($id)
+    public function revisiDokumen(Request $request, $id)
     {
+        // $pesan=$request->input('pesan');
         $status="revisi";
         $data = DetailDokumen::where('id_detail_dokumen',$id)->first();
         $data->status = $status;
+        // $data->pesan = $pesan;
         $tmp_id_dok = $data['id_dokumen'];
         $data2 = DetailDokumen::getDataEmailDokumen($tmp_id_dok);
         $tmp_email = PenggunaUmum::where('user_id',$data2->user_id)->value('email');
@@ -273,11 +279,13 @@ class DokumenController extends Controller
     }
 
     //Mengirimkan feedback revisi dokumen kembali
-    public function revisiDokumenKembali($id)
+    public function revisiDokumenKembali(Request $request, $id)
     {
+        // $pesan=$request->input('pesan');
         $status="revisi";
         $data = DetailDokumen::where('id_detail_dokumen',$id)->first();
         $data->status = $status;
+        // $data->pesan = $pesan;
         $tmp_id_dok = $data['id_dokumen'];
         $data2 = DetailDokumen::getDataEmailDokumen($tmp_id_dok);
         $tmp_email = PenggunaUmum::where('user_id',$data2->user_id)->value('email');
