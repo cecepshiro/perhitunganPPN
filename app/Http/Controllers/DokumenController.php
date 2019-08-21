@@ -11,6 +11,7 @@ use App\PenggunaUmum;
 use App\Mail\NotifikasiRevisiDokumenMail;
 use App\Mail\NotifikasiAcceptDokumenMail;
 use Illuminate\Support\Facades\Mail;
+use DateTime;
 use Auth;
 
 class DokumenController extends Controller
@@ -210,18 +211,22 @@ class DokumenController extends Controller
     public function listDokumen($id)
     {
         // $data = Dokumen::getDetailDokumen($id);
+        $tmp_begin = date("Y");
+        $until = (date('Y',strtotime($tmp_begin." +1 year")));
         $data = Dokumen::getDetailUsaha($id);
         $tmp_count = Dokumen::getCountDetailUsaha($id);
+        $tmp_years = Pajak::getTahunPajak($until);
         $data2 = Usaha::find($id);
-        $data3 = DetailDokumen::getJumlahData($id);
-        $data4 = Pajak::get();
+        // $data3 = DetailDokumen::getJumlahData($id);
+        // $data4 = Pajak::get();
         return view('dokumen.list')
         ->with('data', $data)
         ->with('data2', $data2)
-        ->with('data3', $data3)
-        ->with('data4', $data4)
-        ->with('tmp_count', $tmp_count);
-        // print_r(count($data));
+        // ->with('data3', $data3)
+        // ->with('data4', $data4)
+        ->with('tmp_count', $tmp_count)
+        ->with('tmp_years', $tmp_years);
+        // print_r($tmp_years);
     }
 
     public function listDokumenPerizinan($id)

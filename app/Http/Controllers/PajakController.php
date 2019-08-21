@@ -241,9 +241,11 @@ class PajakController extends Controller
     {
         $data = Pajak::find($id);
         $jenispajak = JenisPajak::get();
+        $data2 = Usaha::find($data['id_usaha']);
         return view('pajak.form_konfirmasi')
         ->with('data', $data)
-        ->with('jenispajak', $jenispajak);
+        ->with('jenispajak', $jenispajak)
+        ->with('data2', $data2);
     }
 
     public function saveBesaran(Request $request, $id)

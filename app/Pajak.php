@@ -74,5 +74,18 @@ class Pajak extends Model
        ->first();
     }
 
+    //mengambil data omset yang menunggu
+    public static function getTahunPajak($until){
+        return $data = DB::table('data_pajak')
+         ->join('data_dokumen','data_pajak.id_usaha','=','data_dokumen.id_usaha')
+         ->join('data_pengguna','data_dokumen.user_id','=','data_pengguna.user_id')
+         ->join('data_usaha','data_pajak.id_usaha','=','data_usaha.id_usaha')
+         ->distinct()
+         ->select('data_pajak.*','data_pengguna.*')
+         ->where('data_pajak.status', 'accept')
+         ->whereYear('data_pajak.pajak_bulan','2019')
+         ->get();
+   }
+
 
 }

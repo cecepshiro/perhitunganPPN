@@ -5,21 +5,43 @@
         <div class="col-md-12">
             <h4 class="title">Kelola Data Dokumen - {{ $data2['nama_usaha'] }}</h4>
             <p class="category">
+            <?php
+                $tmp = DB::table('data_pajak')->select('pajak_bulan')->where('id_usaha', $data2['id_usaha'])->latest()->value('pajak_bulan');
+                $tmp_begin = date($tmp);
+                $tmp_now = date('Y');
+                $until = (date('Y',strtotime($tmp_begin." +1 year")));
+                $cek = DB::table('data_pajak')->select('*')->where('id_usaha', $data2['id_usaha'])->count();
+            ?>
                     @if(Auth::user()->level==4)
                     <a href="{{ url('dokumen/create/'.$data2['id_usaha'] ) }}"
                     class="btn btn-primary btn-md">Tambah Dokumen</a>
                     @endif
                     @if(Auth::user()->level==4 && count($tmp_count) == count($data) && count($data) != 0)
-                    <a href="{{ url('pajak/create/'.$data2['id_usaha'] ) }}"
-                    class="btn btn-warning btn-md">Input Omset</a>
+                        @if($cek == 0)
+                            <a href="{{ url('pajak/create/'.$data2['id_usaha'] ) }}"
+                            class="btn btn-warning btn-md">Input Omset</a>
+                        @elseif($cek != 0)
+                            @if($until == $tmp_now)
+                            <a href="{{ url('pajak/create/'.$data2['id_usaha'] ) }}"
+                            class="btn btn-warning btn-md">Input Omset</a>
+                            @else
+                            
+                            @endif
+                        @endif
+                    @else
                     @endif
                     </p>
-           
             <div class="card">
                 <div class="card-content">
                     <div class="toolbar">
                         <!--Here you can write extra buttons/actions for the toolbar-->
                     </div>
+                    @if($until == $tmp_now)
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>Inputkan data omset untuk tahun ini</strong>
+                    </div>
+                    @endif
                     @if($message = Session::get('success'))
                     <div class="alert alert-success alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button>

@@ -195,12 +195,12 @@
                             <p>Data Perizinan Pengaju</p>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="{{ url('pumum/index') }}">
                             <i class="ti-view-list-alt"></i>
                             <p>Data Pengguna Umum</p>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="{{ url('dokumen/listKategori') }}">
                             <i class="ti-view-list-alt"></i>

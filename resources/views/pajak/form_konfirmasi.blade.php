@@ -30,6 +30,10 @@
                             <input type="text" placeholder="Masukan id usaha" value="{{ $data['id_usaha'] }}" required readonly name="id_dokumen" class="form-control">
                         </div>
                         <div class="form-group">
+                            <label>Nama Usaha</label>
+                            <input type="text" placeholder="Masukan nama usaha" value="{{ $data2['nama_usaha'] }}" required readonly name="id_dokumen" class="form-control">
+                        </div>
+                        <div class="form-group">
                             <label>Omset</label>
                             <input type="text" placeholder="Masukan besar omset" value="{{ $data['omset'] }}" required name="omset" readonly class="form-control">
                         </div>
@@ -43,7 +47,8 @@
                             </select>
                         </div>
                         <button type="submit" class="btn btn-fill btn-success">Simpan</button>
-                        <a href="{{ url('pajak/listDokumen/'. Auth::user()->id) }}" class="btn btn-fill btn-danger">Kembali</a>
+                        <a href="{{ url('dokumen/listDokumen/'. $data['id_usaha']) }}" class="btn btn-fill btn-warning">Lihat Dokumen</a>
+                        <a href="{{ url('pajak/index/') }}" class="btn btn-fill btn-danger">Kembali</a>
                     </div>
                 </form>
             </div> <!-- end card -->

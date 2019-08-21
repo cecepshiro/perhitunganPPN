@@ -61,7 +61,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email</label>
-                                    <input type="email" class="form-control border-input" required name="email" value="{{ $data->email }}"
+                                    <input type="email" class="form-control border-input" readonly required name="email" value="{{ $data->email }}"
                                         placeholder="Masukan alamat email">
                                 </div>
                             </div>
